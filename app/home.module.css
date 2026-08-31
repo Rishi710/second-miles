@@ -1,0 +1,357 @@
+.pageWrapper {
+  width: 100%;
+  overflow-x: hidden;
+  background-color: #080C08;
+}
+
+/* ─── HERO SECTION ─── */
+.heroSection {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-top: 100px;
+  padding-bottom: 36px;
+  box-sizing: border-box;
+  overflow: hidden;
+  background-color: #080C08;
+}
+
+/* Background image & overlays */
+.heroBackground {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.heroBgImage {
+  object-fit: cover;
+  object-position: right center;
+  filter: brightness(1.05) contrast(1.08);
+}
+
+.heroGradientOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    linear-gradient(90deg, #080C08 0%, #080C08 28%, rgba(8, 12, 8, 0.75) 45%, rgba(8, 12, 8, 0.1) 70%, rgba(8, 12, 8, 0.3) 100%),
+    linear-gradient(180deg, rgba(8, 12, 8, 0.4) 0%, transparent 20%, transparent 80%, #080C08 100%);
+}
+
+/* Content Container */
+.heroContentWrapper {
+  position: relative;
+  z-index: 10;
+  max-width: 1440px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 40px 48px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 1;
+}
+
+/* Left Typography */
+.heroTextContent {
+  max-width: 620px;
+  margin-top: 40px;
+  animation: fadeIn 0.8s ease-out;
+}
+
+.heroHeading {
+  font-size: clamp(3.2rem, 5.2vw, 4.8rem);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+  color: #ffffff;
+  margin-bottom: 24px;
+}
+
+.heroHeadingAccent {
+  color: #9EE53B;
+  display: inline-block;
+}
+
+.heroSubtitle {
+  font-size: 1.125rem;
+  line-height: 1.65;
+  color: #A0B0A0;
+  font-weight: 400;
+  margin-bottom: 36px;
+  max-width: 500px;
+}
+
+.desktopBr {
+  display: block;
+}
+
+/* CTA Button */
+.heroCtaWrapper {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.heroBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background-color: #9EE53B;
+  color: #060A06;
+  font-size: 0.95rem;
+  font-weight: 700;
+  padding: 14px 28px;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 20px rgba(158, 229, 59, 0.25);
+}
+
+.heroBtn:hover {
+  background-color: #b2f54a;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(158, 229, 59, 0.45);
+}
+
+/* ─── BOTTOM FEATURE BAR WITH DIVIDERS ─── */
+.heroBottomBar {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-top: 80px;
+  padding-top: 24px;
+  animation: fadeIn 1s ease-out 0.2s both;
+}
+
+.bottomItemWrapper {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.bottomItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.bottomIconWrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.bottomItemTitle {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #ffffff;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+}
+
+.bottomDivider {
+  width: 1px;
+  height: 28px;
+  background-color: rgba(255, 255, 255, 0.18);
+}
+
+/* ─── FLOATING ROAD LABELS & NODES ─── */
+.roadCalloutsContainer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 60%;
+  height: 100%;
+  z-index: 5;
+  pointer-events: none;
+}
+
+.roadCallout {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  animation: floatSubtle 4s ease-in-out infinite;
+}
+
+.calloutIconWrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  filter: drop-shadow(0 0 8px rgba(158, 229, 59, 0.6));
+}
+
+.calloutText {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.88rem;
+  font-weight: 600;
+  line-height: 1.25;
+  color: #ffffff;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.9);
+}
+
+/* Coordinates matching screenshot positions */
+.calloutSmarter {
+  top: 15%;
+  left: 36%;
+  animation-delay: 0s;
+}
+
+.calloutPerspective {
+  top: 36%;
+  left: 10%;
+  animation-delay: 1s;
+}
+
+.calloutPerformance {
+  top: 40%;
+  left: 64%;
+  animation-delay: 2s;
+}
+
+.calloutGrowth {
+  top: 60%;
+  left: -2%;
+  animation-delay: 1.5s;
+}
+
+/* Glowing Road Checkpoint Nodes */
+.roadNode {
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.node1 {
+  top: 46%;
+  left: 32%;
+}
+
+.node2 {
+  top: 55%;
+  left: 45%;
+}
+
+.node3 {
+  top: 64%;
+  left: 54%;
+}
+
+.node4 {
+  top: 75%;
+  left: 43%;
+}
+
+.nodeInner {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #9EE53B;
+  box-shadow: 0 0 14px #9EE53B, 0 0 25px rgba(158, 229, 59, 0.8);
+  border: 2px solid #060A06;
+  position: relative;
+  z-index: 2;
+}
+
+.nodePulse {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 2px solid rgba(158, 229, 59, 0.6);
+  animation: nodePulseAnim 2.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
+}
+
+@keyframes nodePulseAnim {
+  0% {
+    transform: scale(0.6);
+    opacity: 0.9;
+  }
+  100% {
+    transform: scale(2.2);
+    opacity: 0;
+  }
+}
+
+@keyframes floatSubtle {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ─── RESPONSIVE BREAKPOINTS ─── */
+@media (max-width: 1200px) {
+  .heroContentWrapper {
+    padding: 30px 32px 0;
+  }
+  .roadCalloutsContainer {
+    width: 50%;
+  }
+  .calloutSmarter {
+    left: 20%;
+  }
+  .calloutPerformance {
+    left: 50%;
+  }
+}
+
+@media (max-width: 980px) {
+  .heroSection {
+    min-height: auto;
+    padding-top: 90px;
+    padding-bottom: 60px;
+  }
+  .heroGradientOverlay {
+    background: 
+      linear-gradient(180deg, #080C08 0%, rgba(8, 12, 8, 0.85) 40%, rgba(8, 12, 8, 0.95) 100%),
+      linear-gradient(90deg, #080C08 0%, rgba(8, 12, 8, 0.9) 100%);
+  }
+  .heroContentWrapper {
+    padding: 20px 24px 0;
+  }
+  .roadCalloutsContainer {
+    display: none;
+  }
+  .heroBottomBar {
+    margin-top: 50px;
+    gap: 16px;
+  }
+  .bottomDivider {
+    display: none;
+  }
+  .bottomItemWrapper {
+    width: 100%;
+  }
+}

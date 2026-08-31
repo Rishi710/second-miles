@@ -1,0 +1,155 @@
+.articleCard {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.articleTag {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #B5FF30;
+  opacity: 0.7;
+}
+
+.articleTitle {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1.3;
+  flex: 1;
+}
+
+.articleExcerpt {
+  font-size: 0.875rem;
+  color: #8F9B8F;
+  line-height: 1.65;
+}
+
+.articleMeta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.8rem;
+  color: #3D4D3D;
+  margin-top: auto;
+}
+
+.dot {
+  opacity: 0.4;
+}
+
+.readMore {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #B5FF30;
+  transition: opacity 0.2s ease;
+}
+
+.readMore:hover {
+  opacity: 0.75;
+}
+
+.caseSection {
+  background: rgba(14,19,14,0.4);
+}
+
+.caseCard {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.caseResult {
+  font-size: 2rem;
+  font-weight: 900;
+  color: #B5FF30;
+  line-height: 1;
+}
+
+.caseClient {
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.4);
+}
+
+.caseDesc {
+  font-size: 0.9rem;
+  color: #8F9B8F;
+  line-height: 1.65;
+  flex: 1;
+}
+
+.caseLink {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #B5FF30;
+  transition: opacity 0.2s;
+}
+
+.caseLink:hover {
+  opacity: 0.7;
+}
+
+.guidesList {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.guideRow {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 24px 28px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  transition: background 0.2s ease;
+}
+
+.guideRow:last-child {
+  border-bottom: none;
+}
+
+.guideRow:hover {
+  background: rgba(181,255,48,0.04);
+}
+
+.guideIcon {
+  width: 44px; height: 44px;
+  border-radius: 10px;
+  background: rgba(181,255,48,0.1);
+  border: 1px solid rgba(181,255,48,0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #B5FF30;
+  flex-shrink: 0;
+}
+
+.guideInfo {
+  flex: 1;
+}
+
+.guideTitle {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 4px;
+}
+
+.guidePages {
+  font-size: 0.8rem;
+  color: #5A6B5A;
+}
+
+.downloadBtn {
+  flex-shrink: 0;
+  font-size: 0.8rem;
+  padding: 10px 20px;
+}
