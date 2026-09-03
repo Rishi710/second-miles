@@ -12,12 +12,12 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: 'SecondMiles — Move beyond the obvious',
-  description: 'SecondMiles helps food businesses make smarter decisions across their online business. Independent perspective, commercial focus, and actionable intelligence.',
-  keywords: ['food business', 'analytics', 'menu optimisation', 'pricing intelligence', 'food industry'],
+  title: 'SecondMiles — Growth Intelligence for Food Businesses',
+  description: 'SecondMiles is the growth intelligence partner for modern food businesses — helping them find and act on the opportunities hidden in their online performance.',
+  keywords: ['growth intelligence', 'food business', 'restaurant analytics', 'menu optimisation', 'pricing intelligence', 'delivery margins', 'conversion rate'],
 };
 
-export default function RootLayout({ children }: LayoutProps<'/'>) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={inter.variable}>
       <body suppressHydrationWarning>

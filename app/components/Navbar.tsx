@@ -13,10 +13,10 @@ const navLinks = [
     href: '/solutions',
     hasDropdown: true,
     dropdown: [
-      { label: 'Menu & Range Optimisation', href: '/solutions#menu' },
+      { label: 'Menu & Range Optimization', href: '/solutions#menu' },
       { label: 'Pricing Intelligence', href: '/solutions#pricing' },
-      { label: 'Channel Strategy', href: '/solutions#channel' },
-      { label: 'Performance Dashboards', href: '/solutions#dashboards' },
+      { label: 'Visibility & Channel Strategy', href: '/solutions#channel' },
+      { label: 'Growth Intelligence & Daily Pulse', href: '/solutions#dashboards' },
     ],
   },
   {
@@ -24,9 +24,8 @@ const navLinks = [
     href: '/resources',
     hasDropdown: true,
     dropdown: [
-      { label: 'Insights & Articles', href: '/resources#insights' },
+      { label: 'Growth Insights', href: '/resources#insights' },
       { label: 'Case Studies', href: '/resources#cases' },
-      { label: 'Guides', href: '/resources#guides' },
     ],
   },
   { label: 'Contact', href: '/contact' },
@@ -52,8 +51,8 @@ export default function Navbar() {
         {/* Logo */}
         <Link href="/" className={styles.logo}>
           <svg className={styles.logoIcon} width="32" height="26" viewBox="0 0 32 26" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M4 4L14 13L4 22" stroke="#9EE53B" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round" />
-            <path d="M13 4L23 13L13 22" stroke="#9EE53B" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round" />
+            <path d="M4 4L14 13L4 22" stroke="#af431d" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round" />
+            <path d="M13 4L23 13L13 22" stroke="#af431d" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
           <span className={styles.logoText}>
             <span className={styles.logoSecond}>SECOND</span>
@@ -102,7 +101,7 @@ export default function Navbar() {
         {/* Right CTA */}
         <div className={styles.navRight}>
           <Link href="/contact" className={styles.headerBtn}>
-            Talk to SecondMiles
+            Find Opportunities
             <svg width="15" height="15" viewBox="0 0 16 16" fill="none">
               <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
@@ -154,7 +153,7 @@ export default function Navbar() {
             className={styles.mobileHeaderBtn}
             onClick={() => setMobileOpen(false)}
           >
-            Talk to SecondMiles →
+            Find My Growth Opportunities →
           </Link>
         </div>
       )}

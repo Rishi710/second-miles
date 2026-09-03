@@ -1,24 +1,27 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
 
 :root {
-  --bg-primary: #080C08;
-  --bg-secondary: #0E130E;
-  --bg-card: #111811;
-  --bg-glass: rgba(14, 19, 14, 0.7);
-  --green: #B5FF30;
-  --green-dim: rgba(181, 255, 48, 0.15);
-  --green-glow: rgba(181, 255, 48, 0.4);
-  --text-primary: #FFFFFF;
-  --text-secondary: #8F9B8F;
-  --text-muted: #5A6B5A;
-  --border: rgba(181, 255, 48, 0.12);
-  --border-dim: rgba(255, 255, 255, 0.06);
+  --bg-primary: #FFFFFF;
+  --bg-secondary: #FFFFFF;
+  --bg-card: #FFFFFF;
+  --bg-glass: rgba(255, 255, 255, 0.97);
+  --accent: #af431d;
+  --accent-dim: rgba(175, 67, 29, 0.08);
+  --accent-glow: rgba(175, 67, 29, 0.25);
+  --green: #af431d;
+  --green-dim: rgba(175, 67, 29, 0.08);
+  --green-glow: rgba(175, 67, 29, 0.25);
+  --text-primary: #1C1917;
+  --text-secondary: #57534E;
+  --text-muted: #78716C;
+  --border: rgba(175, 67, 29, 0.2);
+  --border-dim: rgba(175, 67, 29, 0.1);
   --radius-sm: 6px;
   --radius-md: 12px;
   --radius-lg: 20px;
   --radius-xl: 32px;
-  --shadow-green: 0 0 40px rgba(181, 255, 48, 0.15);
-  --shadow-card: 0 8px 40px rgba(0, 0, 0, 0.4);
+  --shadow-green: 0 8px 30px rgba(175, 67, 29, 0.12);
+  --shadow-card: 0 4px 20px rgba(175, 67, 29, 0.06), 0 1px 3px rgba(175, 67, 29, 0.08);
   --transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -91,14 +94,16 @@ input, textarea, select {
   padding: 60px 0;
 }
 
-.green { color: var(--green); }
+.green, .accent {
+  color: #af431d;
+}
 
 .btn-primary {
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  background: var(--green);
-  color: #080C08;
+  background: #af431d;
+  color: #FFFFFF;
   font-weight: 700;
   font-size: 0.9rem;
   padding: 14px 28px;
@@ -109,8 +114,8 @@ input, textarea, select {
 }
 
 .btn-primary:hover {
-  background: #ccff55;
-  box-shadow: 0 0 30px rgba(181, 255, 48, 0.5);
+  background: #923514;
+  box-shadow: 0 4px 20px rgba(175, 67, 29, 0.35);
   transform: translateY(-1px);
 }
 
@@ -118,8 +123,8 @@ input, textarea, select {
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  border: 1.5px solid var(--green);
-  color: var(--green);
+  border: 1.5px solid #af431d;
+  color: #af431d;
   font-weight: 600;
   font-size: 0.9rem;
   padding: 13px 28px;
@@ -129,22 +134,22 @@ input, textarea, select {
 }
 
 .btn-outline:hover {
-  background: var(--green-dim);
-  box-shadow: var(--shadow-green);
+  background: rgba(175, 67, 29, 0.08);
+  box-shadow: 0 4px 15px rgba(175, 67, 29, 0.15);
   transform: translateY(-1px);
 }
 
 .tag {
   display: inline-block;
-  background: var(--green-dim);
-  color: var(--green);
+  background: rgba(175, 67, 29, 0.08);
+  color: #af431d;
   font-size: 0.75rem;
   font-weight: 600;
   padding: 5px 14px;
   border-radius: 100px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  border: 1px solid var(--border);
+  border: 1px solid rgba(175, 67, 29, 0.2);
 }
 
 .section-label {
@@ -152,7 +157,7 @@ input, textarea, select {
   font-weight: 700;
   letter-spacing: 0.15em;
   text-transform: uppercase;
-  color: var(--green);
+  color: #af431d;
   margin-bottom: 16px;
 }
 
@@ -160,12 +165,12 @@ input, textarea, select {
   font-size: clamp(2rem, 4vw, 3rem);
   font-weight: 800;
   line-height: 1.15;
-  color: var(--text-primary);
+  color: #1C1917;
   margin-bottom: 20px;
 }
 
 .section-title span {
-  color: var(--green);
+  color: #af431d;
 }
 
 .section-desc {
@@ -176,18 +181,19 @@ input, textarea, select {
 }
 
 .card {
-  background: var(--bg-card);
-  border: 1px solid var(--border-dim);
+  background: #FFFFFF;
+  border: 1px solid rgba(175, 67, 29, 0.14);
   border-radius: var(--radius-lg);
   padding: 36px;
   transition: var(--transition);
   position: relative;
   overflow: hidden;
+  box-shadow: var(--shadow-card);
 }
 
 .card:hover {
-  border-color: var(--border);
-  box-shadow: var(--shadow-green);
+  border-color: rgba(175, 67, 29, 0.4);
+  box-shadow: 0 10px 35px rgba(175, 67, 29, 0.12);
   transform: translateY(-4px);
 }
 
@@ -195,8 +201,8 @@ input, textarea, select {
   content: '';
   position: absolute;
   top: 0; left: 0; right: 0;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, var(--green-glow), transparent);
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(175, 67, 29, 0.6), transparent);
   opacity: 0;
   transition: var(--transition);
 }
@@ -222,8 +228,8 @@ input, textarea, select {
 }
 
 @keyframes pulse-glow {
-  0%, 100% { box-shadow: 0 0 10px var(--green-glow); }
-  50%       { box-shadow: 0 0 30px var(--green-glow), 0 0 60px rgba(181,255,48,0.2); }
+  0%, 100% { box-shadow: 0 0 10px rgba(175, 67, 29, 0.2); }
+  50%       { box-shadow: 0 0 25px rgba(175, 67, 29, 0.35); }
 }
 
 @keyframes float {
@@ -266,12 +272,12 @@ input, textarea, select {
   width: 56px;
   height: 56px;
   border-radius: var(--radius-md);
-  background: var(--green-dim);
-  border: 1px solid var(--border);
+  background: rgba(175, 67, 29, 0.08);
+  border: 1px solid rgba(175, 67, 29, 0.2);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--green);
+  color: #af431d;
   flex-shrink: 0;
 }
 
@@ -281,6 +287,7 @@ input, textarea, select {
   text-align: center;
   position: relative;
   overflow: hidden;
+  background: #FFFFFF;
 }
 
 .page-hero::before {
@@ -289,7 +296,7 @@ input, textarea, select {
   top: -200px; left: 50%;
   transform: translateX(-50%);
   width: 700px; height: 700px;
-  background: radial-gradient(circle, rgba(181,255,48,0.08) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(175, 67, 29, 0.07) 0%, transparent 70%);
   pointer-events: none;
 }
 
@@ -297,6 +304,7 @@ input, textarea, select {
   font-size: clamp(2.5rem, 5vw, 4rem);
   font-weight: 800;
   line-height: 1.1;
+  color: #1C1917;
   margin-bottom: 20px;
 }
 
@@ -312,12 +320,12 @@ input, textarea, select {
   width: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: var(--bg-primary);
+  background: #FFFFFF;
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--text-muted);
+  background: rgba(175, 67, 29, 0.3);
   border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--green);
+  background: #af431d;
 }

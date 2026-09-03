@@ -4,61 +4,61 @@ import styles from './solutions.module.css';
 const solutions = [
   {
     id: 'menu',
-    title: 'Menu Intelligence Suite',
-    tag: 'Most Popular',
-    price: 'From £2,500',
-    desc: 'A complete menu audit and rebuild. We analyse every item, restructure your range, and give you a clear action plan to increase revenue from day one.',
+    title: 'Menu & Range Optimization',
+    tag: 'Highest Impact',
+    price: 'Growth Audit & Sprint',
+    desc: 'What should you sell more of? A complete diagnostic of your online menu range, combo engineering, item sequencing, and margin performance.',
     features: [
-      'Full sales & margin data analysis',
-      'Competitive menu benchmarking',
-      'Range architecture redesign',
-      'Menu photography brief',
-      'Platform-specific optimisation',
-      '90-day performance tracking',
+      'Item-level sales velocity & margin diagnostic',
+      'High-margin combo & bundle restructuring',
+      'Modifier funnel & view-to-order audit',
+      'Platform-specific digital merchandising',
+      'Operational kitchen feasibility review',
+      '90-day margin impact tracking',
     ],
     highlight: true,
   },
   {
     id: 'pricing',
-    title: 'Pricing Audit',
-    tag: 'Quick Win',
-    price: 'From £1,500',
-    desc: 'A focused deep-dive into your current pricing vs. the market. Identify quick wins and long-term positioning opportunities.',
+    title: 'Pricing & Elasticity Audit',
+    tag: 'Quick Margin Win',
+    price: 'Targeted Sprint',
+    desc: 'Where are you undercharging or losing conversion? Uncover the optimal price thresholds by channel, item, and daypart without harming order velocity.',
     features: [
-      'Competitor price mapping',
-      'Price point recommendation',
-      'Elasticity sensitivity analysis',
-      'Promotional strategy review',
+      'Delivery platform price elasticity modeling',
+      'Competitor & local catchment price mapping',
+      'Modifier, add-on & combo fee calibration',
+      'Discount efficiency & subsidy reduction roadmap',
     ],
     highlight: false,
   },
   {
     id: 'channel',
-    title: 'Channel Growth Package',
-    tag: 'Growth',
-    price: 'From £3,500',
-    desc: 'End-to-end channel strategy. We audit your current platform performance and build a 6-month growth roadmap.',
+    title: 'Visibility & Channel Strategy',
+    tag: 'Efficiency',
+    price: 'Strategic Advisory',
+    desc: 'Are you spending enough — or spending blindly? Rationalize your aggregator ad spend, platform visibility, and direct channel economics.',
     features: [
-      'Platform performance audit',
-      'Channel mix recommendation',
-      'Direct ordering strategy',
-      'Commission reduction playbook',
-      '6-month growth roadmap',
-      'Monthly check-ins',
+      'Aggregator ad spend incrementality audit',
+      'Organic ranking & tag optimization',
+      'Direct ordering growth & customer migration',
+      'Commission defense & take-rate recovery plan',
+      'Ongoing channel mix optimization',
     ],
     highlight: false,
   },
   {
     id: 'dashboards',
-    title: 'Analytics Dashboard',
-    tag: 'Ongoing',
-    price: 'From £800/mo',
-    desc: 'A custom, always-on performance dashboard built for your business. Track what matters, in real time.',
+    title: 'Growth Intelligence & Daily Pulse',
+    tag: 'Ongoing Intelligence',
+    price: 'Continuous Partnership',
+    desc: 'Know what happened. Know what to do next. Daily Pulse alerts and weekly commercial action plans tailored for modern restaurant leadership.',
     features: [
-      'Custom KPI dashboard',
-      'Platform data integration',
-      'Weekly automated reports',
-      'Monthly strategy reviews',
+      'Daily Pulse intelligence summary',
+      'Margin leak & conversion drop alerts',
+      'Prioritized commercial actions for ops & marketing',
+      'Zero platform bias — 100% focused on your bottom line',
+      'Monthly strategic review with senior partners',
     ],
     highlight: false,
   },
@@ -66,42 +66,42 @@ const solutions = [
 
 const faqs = [
   {
-    q: 'How long does a typical project take?',
-    a: 'Most projects run 4–8 weeks from kickoff to delivery. Ongoing retainers begin within 2 weeks of sign-off.',
+    q: 'How does SecondMiles differ from traditional consultancies or agencies?',
+    a: 'We are not a generic marketing agency selling ad management, nor an ivory-tower consultancy delivering 100-page slide decks. We are a growth intelligence partner for food businesses. Every insight we deliver connects directly to revenue, margin, or efficiency with immediate commercial actions.',
   },
   {
-    q: 'Do you work with independent restaurants or only chains?',
-    a: 'Both. We work with everything from single-site independents to multi-site chains and food-tech scale-ups. Our approach adapts to your size and complexity.',
+    q: 'What data do you need to get started?',
+    a: 'We connect directly to your platform data feeds (Deliveroo, Uber Eats, Just Eat, direct ordering POS). We handle the data synthesis with no disruption to your daily operations.',
   },
   {
-    q: 'What data do you need from us?',
-    a: 'For most projects we need 6–12 months of sales data from your platform(s), your current menu, and basic cost information. We guide you through every step of the data-gathering process.',
+    q: 'Do you work with single-site independents or multi-site operators?',
+    a: 'We partner with growing independent food brands and multi-site operators. Our framework adapts to your size and commercial priorities.',
   },
   {
-    q: 'Can you work with our existing team?',
-    a: 'Absolutely. We\'re designed to complement in-house teams, not replace them. Most of our best results come from working closely with your ops, marketing, and finance leads.',
+    q: 'How fast do we see commercial results?',
+    a: 'Most clients implement our first wave of pricing and menu adjustments within 7–14 days, seeing measurable conversion and basket-size improvements in the first month.',
   },
 ];
 
 export default function SolutionsPage() {
   return (
-    <div style={{paddingTop:'72px'}}>
+    <div style={{ paddingTop: '72px', background: '#FFFFFF' }}>
       {/* Hero */}
-      <section className="page-hero" style={{background:'radial-gradient(ellipse at 50% 0%, rgba(181,255,48,0.08) 0%, transparent 60%)'}}>
+      <section className="page-hero" style={{ background: 'radial-gradient(ellipse at 50% 0%, rgba(175,67,29,0.08) 0%, transparent 60%)' }}>
         <div className="container">
-          <div className="tag" style={{marginBottom:'20px'}}>Solutions</div>
-          <h1>The right solution<br /><span className="green">for your stage.</span></h1>
-          <p>Whether you need a one-off audit or an ongoing strategic partner, we have a solution that fits.</p>
+          <div className="tag" style={{ marginBottom: '20px' }}>Commercial Solutions</div>
+          <h1>Built for the modern<br /><span className="green">restaurant business.</span></h1>
+          <p>From rapid high-impact audits to ongoing growth intelligence, we help you find the commercial opportunities others miss.</p>
         </div>
       </section>
 
       {/* Solutions Grid */}
-      <section className="section">
+      <section className="section" style={{ background: '#FFFFFF' }}>
         <div className="container">
           <div className={styles.solutionsGrid}>
             {solutions.map((s) => (
               <div key={s.id} id={s.id} className={`card ${styles.solutionCard} ${s.highlight ? styles.highlighted : ''}`}>
-                {s.highlight && <div className={styles.popularBadge}>Most Popular</div>}
+                {s.highlight && <div className={styles.popularBadge}>High Impact</div>}
                 <div className={styles.solTag}>{s.tag}</div>
                 <h3 className={styles.solTitle}>{s.title}</h3>
                 <div className={styles.solPrice}>{s.price}</div>
@@ -110,14 +110,14 @@ export default function SolutionsPage() {
                   {s.features.map((f, i) => (
                     <div key={i} className={styles.solFeature}>
                       <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                        <path d="M2 7l4 4 6-7" stroke="#B5FF30" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                        <path d="M2 7l4 4 6-7" stroke="#af431d" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                       </svg>
                       {f}
                     </div>
                   ))}
                 </div>
-                <Link href="/contact" className={s.highlight ? 'btn-primary' : 'btn-outline'} style={{marginTop:'auto'}}>
-                  Get Started →
+                <Link href="/contact" className={s.highlight ? 'btn-primary' : 'btn-outline'} style={{ marginTop: 'auto' }}>
+                  Find Opportunities →
                 </Link>
               </div>
             ))}
@@ -128,7 +128,7 @@ export default function SolutionsPage() {
       {/* FAQ */}
       <section className={`section ${styles.faqSection}`}>
         <div className="container">
-          <div style={{textAlign:'center', marginBottom:'60px'}}>
+          <div style={{ textAlign: 'center', marginBottom: '60px' }}>
             <div className="section-label">FAQ</div>
             <h2 className="section-title">Common <span>questions</span></h2>
           </div>
@@ -144,10 +144,29 @@ export default function SolutionsPage() {
       </section>
 
       {/* CTA */}
-      <section style={{padding:'0 0 100px'}}>
-        <div className="container" style={{textAlign:'center'}}>
-          <p style={{color:'#8F9B8F', marginBottom:'24px'}}>Not sure which solution is right for you?</p>
-          <Link href="/contact" className="btn-primary">Talk to the Team →</Link>
+      <section style={{ padding: '0 0 100px', background: '#FFFFFF' }}>
+        <div className="container" style={{ textAlign: 'center' }}>
+          <div style={{
+            background: 'rgba(175,67,29,0.04)',
+            border: '1px solid rgba(175,67,29,0.22)',
+            borderRadius: '24px',
+            padding: '60px 40px',
+            maxWidth: '800px',
+            margin: '0 auto',
+            boxShadow: '0 10px 30px rgba(175,67,29,0.06)'
+          }}>
+            <div className="section-label" style={{ marginBottom: '12px' }}>Find Your Second Mile</div>
+            <h2 className="section-title" style={{ textAlign: 'center', marginBottom: '16px' }}>
+              Let's find your <span>second mile.</span>
+            </h2>
+            <p style={{ color: '#1C1917', fontSize: '1.15rem', fontWeight: 600, marginBottom: '8px' }}>
+              30 minutes. Your business. No sales pitch.
+            </p>
+            <p style={{ color: '#57534E', marginBottom: '28px', maxWidth: '480px', margin: '0 auto 28px' }}>
+              Not sure which solution matches your current stage? Let's discuss your online ordering setup and determine where the fastest margin gains are.
+            </p>
+            <Link href="/contact" className="btn-primary">Find My Growth Opportunities →</Link>
+          </div>
         </div>
       </section>
     </div>
