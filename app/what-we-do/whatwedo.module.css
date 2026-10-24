@@ -1,96 +1,198 @@
-.servicesList {
-  display: flex;
-  flex-direction: column;
-  gap: 80px;
+/* ---- sticky jump bar ---- */
+
+.jump {
+  position: sticky;
+  top: 86px;
+  z-index: 40;
+  background: var(--paper);
+  border-bottom: var(--line);
+  padding-block: 11px;
 }
 
-.serviceRow {
-  display: grid;
-  grid-template-columns: 1.2fr 1fr;
-  gap: 80px;
+.jump ul {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.jump ul::-webkit-scrollbar { display: none; }
+
+.jump li { flex: 0 0 auto; }
+
+/* Centre the row with auto margins rather than `justify-content: center`.
+   Two reasons: plain `center` makes the first chip unreachable once the row
+   overflows, and the `safe center` form gets collapsed by the CSS minifier
+   so browsers without `safe` support fall back to flex-start. Auto margins
+   resolve to 0 when there is no free space, so overflow still scrolls from
+   the very first chip. */
+.jump li:first-child { margin-inline-start: auto; }
+.jump li:last-child  { margin-inline-end: auto; }
+
+.jumpLink {
+  display: inline-flex;
   align-items: center;
-  padding-bottom: 80px;
-  border-bottom: 1px solid rgba(175, 67, 29, 0.15);
+  gap: 7px;
+  white-space: nowrap;
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 7px 14px;
+  border-radius: 99px;
+  border: 1.5px solid var(--ink);
+  background: var(--cream);
+  transition: transform var(--ease), box-shadow var(--ease);
 }
+.jumpLink:hover { transform: translate(-1px, -1px); box-shadow: 3px 3px 0 var(--ink); }
 
-.serviceRow:last-child {
-  border-bottom: none;
-  padding-bottom: 0;
+.jumpLink span {
+  font-family: var(--font-mono), monospace;
+  font-size: 0.64rem;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 5px;
+  color: var(--cream);
 }
+.jumpLink.ember span   { background: var(--ember); }
+.jumpLink.saffron span { background: #B07606; }
+.jumpLink.sky span     { background: var(--sky); }
+.jumpLink.plum span    { background: var(--plum); }
+.jumpLink.basil span   { background: var(--basil); }
+.jumpLink.ink span     { background: var(--ink); }
 
-.serviceLeft {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
+/* ---- rows ---- */
+
+.list { display: flex; flex-direction: column; gap: clamp(46px, 7vw, 86px); }
+
+.row {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: clamp(28px, 4vw, 54px);
+  align-items: center;
+  scroll-margin-top: 140px;
 }
+.flip .copy { order: 2; }
+.flip .card { order: 1; }
 
-.serviceTag {
-  font-size: 0.78rem;
+.copy { max-width: 560px; }
+
+.tagRow { display: flex; align-items: center; gap: 11px; margin-bottom: 16px; }
+
+.num {
+  font-family: var(--font-mono), monospace;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--cream);
+  padding: 5px 10px;
+  border-radius: 8px;
+  border: 1.5px solid var(--ink);
+}
+.num.ember   { background: var(--ember); }
+.num.saffron { background: var(--saffron); color: var(--ink); }
+.num.sky     { background: var(--sky); }
+.num.plum    { background: var(--plum); }
+.num.basil   { background: var(--basil); }
+.num.ink     { background: var(--ink); }
+
+.area {
+  font-family: var(--font-mono), monospace;
+  font-size: 0.68rem;
   font-weight: 700;
   letter-spacing: 0.15em;
-  color: #af431d;
-}
-
-.serviceTitle {
-  font-size: 1.75rem;
-  font-weight: 800;
-  color: #1C1917;
-  line-height: 1.2;
-}
-
-.serviceHeadline {
-  font-size: 1.05rem;
-  font-weight: 600;
-  color: #af431d;
-  line-height: 1.4;
-}
-
-.serviceDesc {
-  font-size: 0.95rem;
-  color: #57534E;
-  line-height: 1.75;
-}
-
-.serviceRight {}
-
-.outcomesCard {
-  background: #FFFFFF;
-  border: 1px solid rgba(175, 67, 29, 0.2);
-  border-radius: 16px;
-  padding: 32px;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  box-shadow: var(--shadow-card);
-}
-
-.outcomesTitle {
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: #af431d;
-  margin-bottom: 4px;
+  color: var(--ink-3);
 }
 
-.outcome {
+.line {
+  font-family: var(--font-bricolage), sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.35;
+  margin: 14px 0 12px;
+}
+.line.ember   { color: var(--ember); }
+.line.saffron { color: #9C6604; }
+.line.sky     { color: var(--sky); }
+.line.plum    { color: var(--plum); }
+.line.basil   { color: var(--basil); }
+.line.ink     { color: var(--ink-2); }
+
+.body {
+  font-size: 0.97rem;
+  line-height: 1.7;
+  color: var(--ink-2);
+  margin-bottom: 22px;
+}
+
+/* ---- deliverables card ---- */
+
+.card {
+  border: var(--line);
+  border-radius: var(--r-lg);
+  padding: 28px;
+  box-shadow: var(--pop);
+  background: var(--paper);
+}
+.card.ember   { background: var(--ember-soft); }
+.card.saffron { background: var(--saffron-soft); }
+.card.sky     { background: var(--sky-soft); }
+.card.plum    { background: var(--plum-soft); }
+.card.basil   { background: var(--basil-soft); }
+.card.ink     { background: var(--cream-2); }
+
+.cardHead {
+  font-family: var(--font-mono), monospace;
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding-bottom: 14px;
+  margin-bottom: 16px;
+  border-bottom: 2px dashed rgba(23, 19, 16, 0.25);
+}
+
+.card ul { display: flex; flex-direction: column; gap: 13px; }
+
+.card li {
   display: flex;
-  align-items: flex-start;
-  gap: 12px;
+  gap: 11px;
   font-size: 0.92rem;
-  color: #292524;
-  line-height: 1.45;
+  line-height: 1.55;
+  color: var(--ink-2);
 }
 
-.checkIcon {
-  flex-shrink: 0;
+.check {
+  display: grid;
+  place-items: center;
+  width: 21px;
+  height: 21px;
+  flex: none;
   margin-top: 1px;
-  color: #af431d;
+  border-radius: 50%;
+  border: 1.5px solid var(--ink);
+  background: var(--paper);
+  color: var(--ink);
 }
+
+/* ---- closing band ---- */
+
+.end {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 28px;
+}
+.end > div { max-width: 620px; }
 
 @media (max-width: 900px) {
-  .serviceRow {
-    grid-template-columns: 1fr;
-    gap: 40px;
-  }
+  .jump { top: 78px; }
+  .row { grid-template-columns: 1fr; }
+  .flip .copy { order: 1; }
+  .flip .card { order: 2; }
+  .copy { max-width: 100%; }
+}
+
+@media (max-width: 560px) {
+  .jump { display: none; }
+  .card { box-shadow: var(--pop); padding: 22px; }
 }

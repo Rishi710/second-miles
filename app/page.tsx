@@ -2,620 +2,525 @@ import Link from 'next/link';
 import Image from 'next/image';
 import styles from './home.module.css';
 
-// SVG Icons tailored for Growth Intelligence with #af431d theme
-const ReticleIcon = () => (
-  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <circle cx="12" cy="12" r="8" stroke="#af431d" strokeWidth="1.5" strokeDasharray="4 2" />
-    <circle cx="12" cy="12" r="3" stroke="#af431d" strokeWidth="1.5" />
-    <circle cx="12" cy="12" r="1" fill="#af431d" />
-  </svg>
-);
+/* ---------------- data ---------------- */
 
-const SignalIcon = () => (
-  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M2 12C2 6.477 6.477 2 12 2M2 12C2 17.523 6.477 22 12 22" stroke="#af431d" strokeWidth="1.5" strokeLinecap="round"/>
-    <path d="M6 12C6 8.686 8.686 6 12 6M6 12C6 15.314 8.686 18 12 18" stroke="#af431d" strokeWidth="1.5" strokeLinecap="round"/>
-    <circle cx="12" cy="12" r="2" fill="#af431d" />
-  </svg>
-);
-
-const PerformanceIcon = () => (
-  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M4 18H20" stroke="#af431d" strokeWidth="1.5" />
-    <path d="M6 15V18M11 11V18M16 7V18" stroke="#af431d" strokeWidth="2" strokeLinecap="round" />
-    <path d="M7 9L12 4L17 7" stroke="#af431d" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-    <path d="M14 4H17V7" stroke="#af431d" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-  </svg>
-);
-
-const TargetIcon1 = () => (
-  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <circle cx="12" cy="12" r="9" stroke="#af431d" strokeWidth="1.5" strokeDasharray="2 3" />
-    <circle cx="12" cy="12" r="5" stroke="#af431d" strokeWidth="1.5" />
-    <circle cx="12" cy="12" r="1.5" fill="#af431d" />
-  </svg>
-);
-
-const TargetIcon2 = () => (
-  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <circle cx="12" cy="12" r="8.5" stroke="#af431d" strokeWidth="1.5" />
-    <circle cx="12" cy="12" r="3.5" stroke="#af431d" strokeWidth="1.5" />
-    <path d="M12 2V6M12 18V22M2 12H6M18 12H22" stroke="#af431d" strokeWidth="1.5" strokeLinecap="round" />
-  </svg>
-);
-
-const GrowthChartIcon = () => (
-  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M3 20H21" stroke="#af431d" strokeWidth="1.5" strokeLinecap="round" />
-    <rect x="5" y="14" width="3" height="6" rx="0.5" stroke="#af431d" strokeWidth="1.5" />
-    <rect x="10.5" y="10" width="3" height="10" rx="0.5" stroke="#af431d" strokeWidth="1.5" />
-    <rect x="16" y="6" width="3" height="14" rx="0.5" stroke="#af431d" strokeWidth="1.5" fill="#af431d" fillOpacity="0.15" />
-    <path d="M6 10L12 4L19 7" stroke="#af431d" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-  </svg>
-);
-
-const FoodBusinessIcon = () => (
-  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <circle cx="12" cy="12" r="9" stroke="#af431d" strokeWidth="1.5" strokeDasharray="3 3" />
-    <path d="M7 13C7 15.7614 9.23858 18 12 18C14.7614 18 17 15.7614 17 13H7Z" stroke="#af431d" strokeWidth="1.5" />
-    <path d="M12 6V10M9 8V10M15 8V10" stroke="#af431d" strokeWidth="1.5" strokeLinecap="round" />
-  </svg>
-);
-
-const bottomHighlights = [
-  { icon: <TargetIcon1 />, title: 'Independent Perspective' },
-  { icon: <TargetIcon2 />, title: 'Commercial Focus' },
-  { icon: <GrowthChartIcon />, title: 'Actionable Intelligence' },
-  { icon: <FoodBusinessIcon />, title: 'Built for Modern Restaurants' },
-];
-
-const commercialProblems = [
+const fixes = [
   {
-    num: '01',
+    n: '01',
+    tone: 'ember',
     area: 'Menu',
-    question: 'What should you sell more of?',
-    desc: 'Identify true revenue engines and eliminate underperforming dishes dragging down basket sizes. We re-engineer ranges around high-margin demand.',
-    link: '/solutions#menu',
+    q: 'What should you sell more of?',
+    a: 'A few dishes pay for everything. The rest just add work. We find out which is which, then rebuild the menu around the winners.',
+    href: '/what-we-do#menu',
   },
   {
-    num: '02',
+    n: '02',
+    tone: 'saffron',
     area: 'Pricing',
-    question: 'Where are you undercharging or losing conversion?',
-    desc: 'Stop guessing price thresholds. We model channel-specific price elasticity to capture maximum contribution margin without hurting volume.',
-    link: '/solutions#pricing',
+    q: 'Are your prices right?',
+    a: 'Some items are too cheap. Some have crept too high and now lose orders. We test where each price should sit, by platform and by hour.',
+    href: '/what-we-do#pricing',
   },
   {
-    num: '03',
-    area: 'Visibility',
-    question: 'Are you spending enough — or spending blindly?',
-    desc: 'Dissect sponsored listings and platform placement. Ensure every marketing pound spent directly translates into profitable, incremental orders.',
-    link: '/solutions#channel',
+    n: '03',
+    tone: 'sky',
+    area: 'Ads',
+    q: 'Is your ad spend doing anything?',
+    a: 'Platforms are happy to take your money. We check which orders you would have won anyway, and move the budget somewhere it works.',
+    href: '/what-we-do#visibility',
   },
   {
-    num: '04',
+    n: '04',
+    tone: 'plum',
     area: 'Conversion',
-    question: 'Why are customers viewing but not ordering?',
-    desc: 'Diagnose where menu viewers bounce. We optimize visual hierarchy, photo briefs, modifier flow, and bundle design to close the order.',
-    link: '/solutions#menu',
+    q: 'Why do people look but not order?',
+    a: 'Thousands see your page. Only some order. We find the exact step where they drop off a photo, a price, a delivery fee and fix it.',
+    href: '/what-we-do#conversion',
   },
   {
-    num: '05',
-    area: 'Profitability',
-    question: 'Which orders actually make you money?',
-    desc: 'Uncover true net contribution after aggregator commissions, packaging costs, and discounting schemes eat away at gross revenues.',
-    link: '/solutions#dashboards',
+    n: '05',
+    tone: 'basil',
+    area: 'Profit',
+    q: 'Which orders actually make money?',
+    a: 'After commission, packaging and discounts, some orders earn you nothing. We show you the real number per order and where it leaks.',
+    href: '/what-we-do#profitability',
   },
   {
-    num: '06',
-    area: 'Growth',
-    question: 'What should you do next?',
-    desc: 'Move past static retrospectives. Receive clear commercial actions and weekly priorities that compound performance month after month.',
-    link: '/contact',
+    n: '06',
+    tone: 'ink',
+    area: 'Next steps',
+    q: 'What do we do on Monday?',
+    a: 'Every week you get a short list. Three or four moves, in order of what they are worth. No homework, no 60-slide deck.',
+    href: '/what-we-do#growth',
   },
 ];
 
-const howItWorksSteps = [
+const steps = [
   {
-    step: '01',
-    title: 'Diagnose',
-    desc: 'Understand the business and benchmark current performance across delivery platforms and direct ordering channels.',
+    n: '1',
+    title: 'We look',
+    desc: 'We pull your numbers off every platform Zomato, Swiggy, Uber Eats, your own site and till into one place. Nothing changes in your kitchen.',
+    tone: 'sky',
   },
   {
-    step: '02',
-    title: 'Identify',
-    desc: 'Find gaps, hidden opportunities, and performance leaks where profit is being lost across menu, pricing, and visibility.',
+    n: '2',
+    title: 'We find',
+    desc: 'We spot what moved, what is quietly leaking money, and what is worth chasing first. Then we size it in rupees, not percentages.',
+    tone: 'saffron',
   },
   {
-    step: '03',
-    title: 'Act',
-    desc: 'Translate insights into specific commercial actions with straightforward execution for your ops and marketing teams.',
-  },
-  {
-    step: '04',
-    title: 'Grow',
-    desc: 'Track impact on true contribution margins and continuously identify the next commercial opportunity.',
+    n: '3',
+    title: 'You act',
+    desc: 'You get a short, ranked list of changes with the reason behind each one. We stay on to check whether they actually worked.',
+    tone: 'basil',
   },
 ];
 
-const metricTags = ['Revenue', 'Orders', 'AOV', 'Conversion', 'Visibility', 'Profitability'];
-
-const clientResults = [
+const results = [
   {
-    badge: 'Multi-Unit Casual Brand',
-    title: 'Menu Architecture & Bundle Optimization',
-    desc: 'Restructured delivery menu architecture and promotional bundling across 35 locations, driving significant incremental order value without increasing kitchen complexity.',
+    tone: 'ember',
+    figure: '+23%',
+    metric: 'bigger average order',
+    who: 'Casual dining group, 35 sites',
+    what: 'We rebuilt the delivery menu around six proven combos and dropped the clutter. Same kitchen, bigger baskets.',
   },
   {
-    badge: 'Independent Restaurant Group',
-    title: 'Channel Mix & Commission Defense',
-    desc: 'Calibrated platform commission spend and introduced targeted direct-ordering incentives, shifting margin back to the business bottom line.',
+    tone: 'basil',
+    figure: '−18%',
+    metric: 'less lost to commission',
+    who: 'Regional fast-casual brand',
+    what: 'We cut the promos that were paying for orders they already had, and moved regulars to direct ordering.',
   },
   {
-    badge: 'Fast-Growing Food Brand',
-    title: 'Conversion Audit & Pricing Elasticity',
-    desc: 'Isolated peak-hour drop-offs and implemented surgical price adjustments, restoring evening basket conversion while lifting overall dish margins.',
+    tone: 'sky',
+    figure: '+31%',
+    metric: 'more views turning into orders',
+    who: 'Independent pizza & burger group',
+    what: 'New photos, clearer descriptions, simpler add-ons. The 8pm drop-off disappeared.',
   },
 ];
+
+const ticker = [
+  'Menu',
+  'Pricing',
+  'Ads & visibility',
+  'Conversion',
+  'Commission',
+  'Packaging cost',
+  'Dayparts',
+  'Repeat orders',
+  'Basket size',
+  'Real profit per order',
+];
+
+/* ---------------- page ---------------- */
 
 export default function Home() {
   return (
-    <div className={styles.pageWrapper}>
-      {/* ─── 01: HERO SECTION ─── */}
-      <section className={styles.heroSection}>
-        {/* Background Landscape with Glowing Road */}
-        <div className={styles.heroBackground}>
-          <Image
-            src="/hero-road.jpg"
-            alt="SecondMiles glowing road landscape representing commercial growth intelligence"
-            fill
-            priority
-            className={styles.heroBgImage}
-            quality={100}
-          />
-          <div className={styles.heroGradientOverlay} />
-        </div>
+    <>
+      {/* ───────── 01 · HERO ───────── */}
+      <section className={styles.hero}>
+        <div className={`container container-wide ${styles.heroGrid}`}>
+          <div className={`${styles.heroCopy} rise`}>
+            <span className={styles.heroBadge}>
+              <span className="live-dot" />
+              Growth people for food businesses
+            </span>
 
-        {/* Floating Road Intelligence Path: Data Points → Signals → Action → Growth */}
-        <div className={styles.roadCalloutsContainer}>
-          {/* Node 1: Data Points (Near horizon) */}
-          <div className={`${styles.roadCallout} ${styles.calloutDataPoints}`}>
-            <div className={styles.calloutIconWrap}>
-              <ReticleIcon />
-            </div>
-            <div className={styles.calloutText}>
-              <span className={styles.calloutStep}>01 · DATA POINTS</span>
-              <span className={styles.calloutTitle}>Platform Signals</span>
-              <span className={styles.calloutDesc}>Menu, POS & order streams</span>
-            </div>
-          </div>
-
-          {/* Node 2: Signals (Upper-mid left) */}
-          <div className={`${styles.roadCallout} ${styles.calloutSignals}`}>
-            <div className={styles.calloutIconWrap}>
-              <SignalIcon />
-            </div>
-            <div className={styles.calloutText}>
-              <span className={styles.calloutStep}>02 · SIGNALS</span>
-              <span className={styles.calloutTitle}>Margin Leak Detection</span>
-              <span className={styles.calloutDesc}>Pricing & conversion gaps</span>
-            </div>
-          </div>
-
-          {/* Node 3: Action (Mid-right) */}
-          <div className={`${styles.roadCallout} ${styles.calloutAction}`}>
-            <div className={styles.calloutIconWrap}>
-              <PerformanceIcon />
-            </div>
-            <div className={styles.calloutText}>
-              <span className={styles.calloutStep}>03 · ACTION</span>
-              <span className={styles.calloutTitle}>Clear Decisions</span>
-              <span className={styles.calloutDesc}>Prioritised commercial moves</span>
-            </div>
-          </div>
-
-          {/* Node 4: Growth (Lower-left) */}
-          <div className={`${styles.roadCallout} ${styles.calloutGrowth}`}>
-            <div className={styles.calloutIconWrap}>
-              <GrowthChartIcon />
-            </div>
-            <div className={styles.calloutText}>
-              <span className={styles.calloutStep}>04 · GROWTH</span>
-              <span className={styles.calloutTitle}>Sustainable Profit</span>
-              <span className={styles.calloutDesc}>Compounding revenue uplift</span>
-            </div>
-          </div>
-
-          {/* Glowing Milestone Dots along the road */}
-          <div className={`${styles.roadNode} ${styles.node1}`}>
-            <div className={styles.nodeInner} />
-            <div className={styles.nodePulse} />
-          </div>
-          <div className={`${styles.roadNode} ${styles.node2}`}>
-            <div className={styles.nodeInner} />
-            <div className={styles.nodePulse} />
-          </div>
-          <div className={`${styles.roadNode} ${styles.node3}`}>
-            <div className={styles.nodeInner} />
-            <div className={styles.nodePulse} />
-          </div>
-          <div className={`${styles.roadNode} ${styles.node4}`}>
-            <div className={styles.nodeInner} />
-            <div className={styles.nodePulse} />
-          </div>
-        </div>
-
-        {/* Hero Left Content */}
-        <div className={styles.heroContentWrapper}>
-          <div className={styles.heroTextContent}>
-            <div className={styles.heroEyebrow}>
-              <span className={styles.heroPulseDot} />
-              Growth Intelligence for Food Businesses
-            </div>
-
-            <h1 className={styles.heroHeading}>
-              Move beyond<br />
-              <span className={styles.heroHeadingAccent}>the obvious.</span>
+            <h1 className="h-xl">
+              Find the money<br />
+              hiding in your <span className="mark">menu.</span>
             </h1>
 
-            <p className={styles.heroSubtitle}>
-              Find the growth your food business is leaving behind.
+            <p className={`lead ${styles.heroLead}`}>
+              You already have the data. Every platform sends you a report. What
+              nobody sends you is the answer. That is our job — we read your
+              numbers and tell you, in plain English, what to change this week.
             </p>
 
-            <p className={styles.heroDesc}>
-              SecondMiles helps restaurants turn online-ordering data into sharper decisions, stronger performance and sustainable growth.
-            </p>
-
-            <div className={styles.heroCtaWrapper}>
-              <Link href="/contact" className={styles.heroBtn}>
-                Find My Growth Opportunities
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                  <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
+            <div className={styles.heroCtas}>
+              <Link href="/contact" className="btn btn-primary">
+                Book a free growth check
+                <Arrow />
               </Link>
-              <Link href="#problem" className={styles.heroBtnSecondary}>
-                How We Think ↓
+              <Link href="#how" className="btn btn-ghost">
+                See how it works
               </Link>
             </div>
+
+            <ul className={styles.heroProof}>
+              <li><Tick /> Free 30-minute first look</li>
+              <li><Tick /> No platform kickbacks, ever</li>
+              <li><Tick /> Plain answers, not dashboards</li>
+            </ul>
           </div>
 
-          {/* Bottom Bar: Core Philosophical Highlights */}
-          <div className={styles.heroBottomBar}>
-            {bottomHighlights.map((item, index) => (
-              <div key={item.title} className={styles.bottomItemWrapper}>
-                <div className={styles.bottomItem}>
-                  <div className={styles.bottomIconWrap}>{item.icon}</div>
-                  <span className={styles.bottomItemTitle}>{item.title}</span>
+          {/* The pass — a kitchen docket of this week's answers */}
+          <div className={`${styles.pass} rise rise-2`}>
+            <div className={styles.passHead}>
+              <span className={styles.passTitle}>THE PASS</span>
+              <span className={styles.passWeek}>WEEK 42</span>
+            </div>
+
+            <div className={styles.passStats}>
+              <Stat label="Revenue" value="+12.4%" tone="up" />
+              <Stat label="Orders" value="+8.7%" tone="up" />
+              <Stat label="Basket" value="+3.4%" tone="up" />
+              <Stat label="Ad return" value="−6.2%" tone="down" />
+            </div>
+
+            <div className="perf" />
+
+            <div className={styles.passNotes}>
+              <PassNote tone="basil" tag="Working">
+                <strong>Chicken combos are carrying lunch.</strong> They added
+                ₹60 to the average ticket. Push them harder.
+              </PassNote>
+              <PassNote tone="ember" tag="Watch">
+                <strong>Dinner orders are slipping.</strong> Same number of
+                people looking between 7:30 and 9. Fewer buying.
+              </PassNote>
+              <PassNote tone="saffron" tag="Do this">
+                <strong>Drop the ₹499 bundle to ₹449.</strong> It sits just above
+                where people stop. Worth roughly ₹1.2 lakh a week.
+              </PassNote>
+            </div>
+
+            <p className={styles.passFoot}>
+              Example only — your Pass is built from your own numbers.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* ───────── ticker ───────── */}
+      <div className="marquee" aria-hidden="true">
+        <div className="marquee-track">
+          <span>
+            {ticker.map((t) => (
+              <span key={t}>{t} ✦</span>
+            ))}
+          </span>
+          <span>
+            {ticker.map((t) => (
+              <span key={`${t}-2`}>{t} ✦</span>
+            ))}
+          </span>
+        </div>
+      </div>
+
+      {/* ───────── 02 · THE PROBLEM ───────── */}
+      <section className="section band-cream band-dots">
+        <div className="container">
+          <div className={styles.probHead}>
+            <div>
+              <span className="kicker">The problem</span>
+              <h2 className="h-lg">
+                Reports everywhere.<br />
+                <span className="swish">Answers nowhere.</span>
+              </h2>
+            </div>
+            <p className="lead">
+              Most owners open four dashboards before breakfast and still can&apos;t
+              say what to change. The numbers describe yesterday. They never
+              tell you what to do about it.
+            </p>
+          </div>
+
+          <div className={styles.compare}>
+            <div className={`${styles.compareCard} ${styles.compareBad}`}>
+              <span className="chip">What you get now</span>
+              <p className={styles.compareQuote}>
+                &ldquo;Sales were down 4.2% on Platform A yesterday.&rdquo;
+              </p>
+              <p className={styles.compareNote}>
+                True, and completely useless. Down why? Down where? Worth
+                worrying about, or just a rainy Tuesday?
+              </p>
+            </div>
+
+            <div className={styles.compareVs}>vs</div>
+
+            <div className={`${styles.compareCard} ${styles.compareGood}`}>
+              <span className="chip chip-basil">What we send</span>
+              <p className={styles.compareQuote}>
+                &ldquo;Dinner is down because the combo sits ₹50 above the price
+                people stop at. Move it and you get about ₹1.2 lakh a week back.&rdquo;
+              </p>
+              <p className={styles.compareNote}>
+                One sentence. One number. One thing to go and do.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ───────── 03 · SIX THINGS WE FIX ───────── */}
+      <section className="section band-paper" id="fix">
+        <div className="container">
+          <div className={styles.fixHead}>
+            <div>
+              <span className="kicker">What we fix</span>
+              <h2 className="h-lg">
+                Six questions.<br />Six places money goes missing.
+              </h2>
+            </div>
+            <p className="lead">
+              We don&apos;t do strategy decks. We work on the six things that
+              decide whether a food business makes money online.
+            </p>
+          </div>
+
+          <div className={styles.fixGrid}>
+            {fixes.map((f) => (
+              <Link
+                key={f.n}
+                href={f.href}
+                className={`${styles.fixCard} ${styles[f.tone]} pop-hover`}
+              >
+                <div className={styles.fixTop}>
+                  <span className={styles.fixNum}>{f.n}</span>
+                  <span className={styles.fixArea}>{f.area}</span>
                 </div>
-                {index < bottomHighlights.length - 1 && (
-                  <div className={styles.bottomDivider} />
-                )}
-              </div>
+                <h3 className={styles.fixQ}>{f.q}</h3>
+                <p className={styles.fixA}>{f.a}</p>
+                <span className={styles.fixLink}>
+                  Read more <Arrow />
+                </span>
+              </Link>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ─── 02: THE PROBLEM ─── */}
-      <section id="problem" className={styles.problemSection}>
+      {/* ───────── 04 · HOW IT WORKS ───────── */}
+      <section className="section band-ink" id="how">
         <div className="container">
-          <div className="section-label">The Problem</div>
-          <h2 className="section-title">
-            Your data already knows where the growth is.<br />
-            <span>Most restaurants just aren't looking at it the right way.</span>
-          </h2>
-
-          <div className={styles.problemCardGrid}>
-            <div className={styles.problemQuoteBox}>
-              <p className={styles.problemQuote}>
-                "Disjointed aggregator dashboards, promo costs, and clunky spreadsheets give you mountains of reports — but zero clarity on what moves your profit."
-              </p>
-              <p className={styles.problemQuoteSub}>
-                Food operators spend hours looking at yesterday's volume while invisible leaks in menu architecture, discount erosion, and channel fees quietly drain margins.
-              </p>
-            </div>
-
-            <div className={styles.problemComparison}>
-              <div className={styles.comparisonItem}>
-                <div className={styles.comparisonIconFail}>✕</div>
-                <div className={styles.comparisonContent}>
-                  <h4>Generic Dashboard Reporting</h4>
-                  <p>"Yesterday sales dropped 4.2% on Platform A." Raw facts without commercial context, leaving teams guessing what went wrong.</p>
-                </div>
-              </div>
-
-              <div className={styles.comparisonItem}>
-                <div className={styles.comparisonIconPass}>✓</div>
-                <div className={styles.comparisonContent}>
-                  <h4>SecondMiles Growth Intelligence</h4>
-                  <p>"Dinner conversion dropped 1.8% due to combo price friction. Adjusting bundle tiering restores £1,400 in weekly contribution."</p>
-                </div>
-              </div>
-            </div>
+          <div className="center-col">
+            <span className="kicker on-dark">How it works</span>
+            <h2 className="h-lg">
+              Three steps. <span className="mark mark-ember mark-light">No faff.</span>
+            </h2>
+            <p className="lead on-dark" style={{ marginTop: 18 }}>
+              From messy platform exports to a list you can act on before the
+              lunch rush.
+            </p>
           </div>
-        </div>
-      </section>
 
-      {/* ─── 03: SECOND MILES PHILOSOPHY ─── */}
-      <section className={styles.philosophySection}>
-        <div className="container">
-          <div className="section-label">Our Philosophy</div>
-          <h2 className="section-title">
-            The first answer isn't always the best answer.<br />
-            <span>We go one step further.</span>
-          </h2>
-          <p className="section-desc" style={{marginBottom: '40px'}}>
-            We connect performance, customer behaviour and commercial decisions to uncover the high-impact opportunities others miss.
-          </p>
+          <div className={styles.steps}>
+            {steps.map((s, i) => (
+              <div key={s.n} className={`${styles.step} ${styles[s.tone]}`}>
+                <div className={styles.stepNum}>{s.n}</div>
+                <h3 className={styles.stepTitle}>{s.title}</h3>
+                <p className={styles.stepDesc}>{s.desc}</p>
+                {i < steps.length - 1 && <span className={styles.stepLine} />}
+              </div>
+            ))}
+          </div>
 
-          <div className={styles.philosophyBanner}>
-            <div className={styles.philosophyStatement}>
-              We don't just report performance. <span>We challenge it.</span>
-            </div>
-            <Link href="/about" className="btn-outline" style={{padding: '10px 20px', fontSize: '0.85rem'}}>
-              Read Our Story →
+          <div className={styles.howFoot}>
+            <p>
+              Most clients make their first change within two weeks of the first
+              call.
+            </p>
+            <Link href="/contact" className="btn btn-saffron">
+              Start with a free check <Arrow />
             </Link>
           </div>
-
-          <div className="grid-3">
-            <div className={styles.pillarCard}>
-              <div className="icon-wrap" style={{width: '48px', height: '48px'}}>
-                <TargetIcon1 />
-              </div>
-              <h3 className={styles.pillarTitle}>Independent Perspective</h3>
-              <p className={styles.pillarDesc}>
-                We look at your business without platform bias. Aggregators want you to spend on ad slots; third parties push their own tools. Our only stakeholder is your commercial profitability.
-              </p>
-            </div>
-
-            <div className={styles.pillarCard}>
-              <div className="icon-wrap" style={{width: '48px', height: '48px'}}>
-                <TargetIcon2 />
-              </div>
-              <h3 className={styles.pillarTitle}>Commercial Focus</h3>
-              <p className={styles.pillarDesc}>
-                Every recommendation connects directly to revenue, efficiency or profitability. We don't produce decorative reports or vanity metrics. Every insight must prove its commercial value.
-              </p>
-            </div>
-
-            <div className={styles.pillarCard}>
-              <div className="icon-wrap" style={{width: '48px', height: '48px'}}>
-                <GrowthChartIcon />
-              </div>
-              <h3 className={styles.pillarTitle}>Actionable Intelligence</h3>
-              <p className={styles.pillarDesc}>
-                No vanity dashboards. Every insight should lead to a decision. We translate complex multi-platform patterns into immediate actions your operational team can execute this week.
-              </p>
-            </div>
-          </div>
-
-          {/* Strategic Modern Restaurant Callout */}
-          <div className={styles.strategicCallout}>
-            <div className="icon-wrap" style={{width: '64px', height: '64px', flexShrink: 0}}>
-              <FoodBusinessIcon />
-            </div>
-            <div className={styles.strategicCalloutText}>
-              <h3>Built for the modern restaurant business.</h3>
-              <p>
-                Your menu, pricing, promotions, visibility, customer behaviour and profitability are connected. SecondMiles brings those signals together to identify where growth is being won — and where it is being lost.
-              </p>
-            </div>
-          </div>
         </div>
       </section>
 
-      {/* ─── 04: WHERE WE FIND GROWTH (6 COMMERCIAL PROBLEMS) ─── */}
-      <section className="section" style={{background: '#FFFFFF'}}>
+      {/* ───────── 05 · WHY US ───────── */}
+      <section className="section band-peach">
         <div className="container">
-          <div className="section-label">Commercial Problem Solvers</div>
-          <h2 className="section-title">
-            Where we find your <span>next growth</span>
-          </h2>
-          <p className="section-desc">
-            We don't talk in vague consultancy abstractions. We solve the six fundamental commercial friction points where food brands leave money behind.
-          </p>
-
-          <div className={styles.growthGrid}>
-            {commercialProblems.map((item) => (
-              <div key={item.num} className={styles.growthCard}>
-                <span className={styles.growthCardNumber}>{item.num} — {item.area}</span>
-                <h3 className={styles.growthCardQuestion}>{item.question}</h3>
-                <p className={styles.growthCardDesc}>{item.desc}</p>
-                <Link href={item.link} className={styles.growthCardLink}>
-                  Explore {item.area} Strategy →
-                </Link>
+          <div className={styles.whyGrid}>
+            <div className={styles.whyPhoto}>
+              <Image
+                src="/hero-road.jpg"
+                alt="An open road at dusk — the second mile"
+                width={760}
+                height={560}
+                className={styles.whyImg}
+                priority={false}
+              />
+              <div className={styles.whyCaption}>
+                <strong>Why &ldquo;SecondMiles&rdquo;?</strong>
+                <span>
+                  The first answer is usually the obvious one. The useful one is
+                  a mile further on. We go and get it.
+                </span>
               </div>
-            ))}
-          </div>
-        </div>
-      </section>
+            </div>
 
-      {/* ─── 05: DAILY PULSE (SAMPLE GROWTH INTELLIGENCE MOCKUP) ─── */}
-      <section className={styles.pulseSection}>
-        <div className="container">
-          <div className={styles.pulseContainer}>
-            <div>
-              <div className="section-label">Growth Intelligence</div>
-              <h2 className="section-title">
-                Know what happened.<br />
-                <span>Know what to do next.</span>
+            <div className={styles.whyCopy}>
+              <span className="kicker">How we work</span>
+              <h2 className="h-lg">
+                We work for you.<br />
+                <span className="swish">Nobody else.</span>
               </h2>
-              <p className="section-desc" style={{marginBottom: '28px'}}>
-                Most operators drown in raw data without knowing what action to take on Monday morning. SecondMiles synthesizes daily activity into a clear pulse of performance shifts and prioritized moves.
-              </p>
-              <div style={{display: 'flex', flexDirection: 'column', gap: '14px', marginBottom: '32px'}}>
-                <div style={{display: 'flex', alignItems: 'center', gap: '12px'}}>
-                  <div style={{color: '#af431d', fontWeight: 800}}>✓</div>
-                  <span style={{color: '#1C1917', fontSize: '0.92rem'}}>Highlights what changed, not just static volumes</span>
-                </div>
-                <div style={{display: 'flex', alignItems: 'center', gap: '12px'}}>
-                  <div style={{color: '#af431d', fontWeight: 800}}>✓</div>
-                  <span style={{color: '#1C1917', fontSize: '0.92rem'}}>Flags margin leaks and demand risks before they compound</span>
-                </div>
-                <div style={{display: 'flex', alignItems: 'center', gap: '12px'}}>
-                  <div style={{color: '#af431d', fontWeight: 800}}>✓</div>
-                  <span style={{color: '#1C1917', fontSize: '0.92rem'}}>Delivers direct commercial recommendations your team can execute</span>
-                </div>
-              </div>
-              <Link href="/contact" className="btn-primary">
-                Request a Growth Audit →
-              </Link>
-            </div>
 
-            {/* Illustrative Sample Daily Pulse Component */}
-            <div className={styles.pulseMockup}>
-              <div className={styles.mockupTopBar}>
-                <div className={styles.mockupBadge}>
-                  <span className={styles.heroPulseDot} />
-                  SAMPLE DAILY PULSE
-                </div>
-                <div className={styles.mockupStatus}>Yesterday's Performance Overview</div>
+              <div className={styles.whyList}>
+                <WhyItem tone="ember" title="No side deals">
+                  We take nothing from delivery platforms or software sellers.
+                  If an ad spend is wasting your money, we say so.
+                </WhyItem>
+                <WhyItem tone="basil" title="Money, not metrics">
+                  Every recommendation comes with a number attached. If we
+                  can&apos;t show you what it&apos;s worth, we don&apos;t send it.
+                </WhyItem>
+                <WhyItem tone="sky" title="Written for busy people">
+                  Short notes a manager can read standing up. No jargon, no
+                  dashboard logins to remember.
+                </WhyItem>
+                <WhyItem tone="plum" title="Run by operators">
+                  Our team has built menus, set prices and run sites. We know
+                  what the kitchen can actually do.
+                </WhyItem>
               </div>
 
-              {/* Metrics Strip */}
-              <div className={styles.metricsStrip}>
-                <div className={styles.metricTile}>
-                  <div className={styles.metricTileLabel}>Revenue</div>
-                  <div className={styles.metricTileVal}>↑ 12.4%</div>
-                </div>
-                <div className={styles.metricTile}>
-                  <div className={styles.metricTileLabel}>Orders</div>
-                  <div className={styles.metricTileVal}>↑ 8.7%</div>
-                </div>
-                <div className={styles.metricTile}>
-                  <div className={styles.metricTileLabel}>AOV</div>
-                  <div className={styles.metricTileVal}>↑ 3.4%</div>
-                </div>
-                <div className={styles.metricTile}>
-                  <div className={styles.metricTileLabel}>Ads ROI</div>
-                  <div className={styles.metricTileVal}>↓ 6.2%</div>
-                </div>
-                <div className={styles.metricTile}>
-                  <div className={styles.metricTileLabel}>Conversion</div>
-                  <div className={styles.metricTileVal}>↑ 2.1%</div>
-                </div>
-              </div>
-
-              {/* Action Stack */}
-              <div className={styles.pulseActionStack}>
-                <div className={styles.actionCard}>
-                  <span className={styles.actionTag}>What Changed</span>
-                  <div className={styles.actionText}>
-                    <strong>Chicken combos drove incremental revenue.</strong> High uptake in lunch meal bundles expanded basket size by £2.80 per ticket.
-                  </div>
-                </div>
-
-                <div className={styles.actionCard}>
-                  <span className={styles.actionTagOutline}>Needs Attention</span>
-                  <div className={styles.actionText}>
-                    <strong>Dinner conversion dropped.</strong> View-to-order rate declined across the 7:30 PM – 9:00 PM slot despite steady search impressions.
-                  </div>
-                </div>
-
-                <div className={styles.actionCard}>
-                  <span className={styles.actionTag}>Recommended Action</span>
-                  <div className={styles.actionText}>
-                    <strong>Review dinner pricing + promotional structure.</strong> Adjust minimum bundle spend thresholds and recalibrate evening featured slots.
-                  </div>
-                </div>
-              </div>
-
-              <div className={styles.mockupDisclaimer}>
-                * Illustrative sample. SecondMiles models multi-channel signals to deliver actionable commercial clarity.
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ─── 06: HOW IT WORKS ─── */}
-      <section className={styles.howSection}>
-        <div className="container">
-          <div style={{textAlign: 'center', maxWidth: '640px', margin: '0 auto 40px'}}>
-            <div className="section-label">The Process</div>
-            <h2 className="section-title">
-              From data to <span>decisions.</span>
-            </h2>
-            <p className="section-desc" style={{margin: '0 auto'}}>
-              How SecondMiles turns complex, scattered online-ordering data into decisive commercial action.
-            </p>
-          </div>
-
-          <div className={styles.howStepsGrid}>
-            {howItWorksSteps.map((s) => (
-              <div key={s.step} className={styles.howStepCard}>
-                <div className={styles.howStepNumber}>{s.step}</div>
-                <h3 className={styles.howStepTitle}>{s.title}</h3>
-                <p className={styles.howStepDesc}>{s.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ─── 07: PROOF (METRICS THAT ACTUALLY MATTER) ─── */}
-      <section className={styles.proofSection}>
-        <div className="container">
-          <div style={{textAlign: 'center', maxWidth: '700px', margin: '0 auto'}}>
-            <div className="section-label">Defensible Credibility</div>
-            <h2 className="section-title">
-              Built around the metrics that <span>actually matter.</span>
-            </h2>
-            <p className="section-desc" style={{margin: '0 auto'}}>
-              We don't hide behind vanity figures or generic statistics. Our work is anchored to the six core numbers that determine food business profitability.
-            </p>
-          </div>
-
-          {/* Metric Tags Cloud */}
-          <div className={styles.metricsPillCloud}>
-            {metricTags.map((tag) => (
-              <div key={tag} className={styles.metricPill}>
-                <span className={styles.metricPillDot} />
-                <span>{tag}</span>
-              </div>
-            ))}
-          </div>
-
-          {/* Case Teasers */}
-          <div className={styles.caseTeaserGrid}>
-            {clientResults.map((c, i) => (
-              <div key={i} className={styles.caseTeaserCard}>
-                <span className={styles.caseClientBadge}>{c.badge}</span>
-                <h3 className={styles.caseTeaserTitle}>{c.title}</h3>
-                <p className={styles.caseTeaserDesc}>{c.desc}</p>
-                <Link href="/resources#cases" style={{display: 'inline-flex', alignItems: 'center', gap: '6px', color: '#af431d', fontSize: '0.86rem', fontWeight: '600', marginTop: '16px'}}>
-                  View Case Study →
-                </Link>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ─── 08: FINAL CTA ─── */}
-      <section className={styles.finalCtaSection}>
-        <div className="container">
-          <div className={styles.ctaContainer}>
-            <div className={styles.ctaPill}>Find Your Second Mile</div>
-            <h2 className={styles.ctaHeading}>
-              Let's find your <span>second mile.</span>
-            </h2>
-            <p className={styles.ctaSubhead}>
-              30 minutes. Your business. No sales pitch.
-            </p>
-            <p className={styles.ctaText}>
-              Let our team review your online-ordering dynamics, benchmark your current menu performance, and highlight the exact growth opportunities you are leaving behind.
-            </p>
-            <div className={styles.ctaActions}>
-              <Link href="/contact" className="btn-primary">
-                Find My Growth Opportunities →
-              </Link>
-              <Link href="/what-we-do" className="btn-outline">
-                Explore Our Solutions
+              <Link href="/about" className="link-arrow" style={{ marginTop: 26 }}>
+                More about us <Arrow />
               </Link>
             </div>
           </div>
         </div>
       </section>
+
+      {/* ───────── 06 · RESULTS ───────── */}
+      <section className="section band-paper">
+        <div className="container">
+          <div className="center-col" style={{ marginBottom: 46 }}>
+            <span className="kicker">Real results</span>
+            <h2 className="h-lg">
+              What changed for <span className="mark mark-sky mark-light">other kitchens</span>
+            </h2>
+          </div>
+
+          <div className={styles.resultGrid}>
+            {results.map((r) => (
+              <article key={r.figure} className={`${styles.resultCard} ${styles[r.tone]}`}>
+                <div className={styles.resultFig}>{r.figure}</div>
+                <div className={styles.resultMetric}>{r.metric}</div>
+                <div className="perf" />
+                <div className={styles.resultWho}>{r.who}</div>
+                <p className={styles.resultWhat}>{r.what}</p>
+              </article>
+            ))}
+          </div>
+
+          <div className={styles.resultFoot}>
+            <Link href="/resources#cases" className="link-arrow">
+              See the full stories <Arrow />
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* ───────── 07 · CTA ───────── */}
+      <section className={styles.cta}>
+        <div className="container">
+          <div className={styles.ctaBox}>
+            <span className={styles.ctaStamp}>Free · 30 min</span>
+            <h2 className="h-lg">
+              Let&apos;s find your <span className="mark">second mile.</span>
+            </h2>
+            <p className={styles.ctaLead}>
+              Half an hour on your numbers. We&apos;ll point at the two or three
+              things worth fixing first — whether or not you hire us.
+            </p>
+            <div className={styles.ctaBtns}>
+              <Link href="/contact" className="btn btn-ink">
+                Book the call <Arrow />
+              </Link>
+              <Link href="/solutions" className="btn">
+                See what we offer
+              </Link>
+            </div>
+            <p className={styles.ctaFine}>
+              No sales script. No lock-in. Just a look at what your data is
+              telling you.
+            </p>
+          </div>
+        </div>
+      </section>
+    </>
+  );
+}
+
+/* ---------------- bits ---------------- */
+
+function Arrow() {
+  return (
+    <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+      <path
+        d="M3 8h10M9 4l4 4-4 4"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+function Tick() {
+  return (
+    <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+      <path
+        d="M3 8.5L6.2 11.5L13 4.8"
+        stroke="currentColor"
+        strokeWidth="2.2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+function Stat({ label, value, tone }: { label: string; value: string; tone: 'up' | 'down' }) {
+  return (
+    <div className={styles.stat}>
+      <span className={styles.statLabel}>{label}</span>
+      <span className={`${styles.statValue} ${tone === 'up' ? styles.up : styles.down}`}>
+        {value}
+      </span>
+    </div>
+  );
+}
+
+function PassNote({
+  tone,
+  tag,
+  children,
+}: {
+  tone: string;
+  tag: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <div className={`${styles.note} ${styles[tone]}`}>
+      <span className={styles.noteTag}>{tag}</span>
+      <p>{children}</p>
+    </div>
+  );
+}
+
+function WhyItem({
+  tone,
+  title,
+  children,
+}: {
+  tone: string;
+  title: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <div className={styles.whyItem}>
+      <span className={`${styles.whyBullet} ${styles[tone]}`} />
+      <div>
+        <h3 className={styles.whyTitle}>{title}</h3>
+        <p className={styles.whyText}>{children}</p>
+      </div>
     </div>
   );
 }

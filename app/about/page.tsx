@@ -1,191 +1,225 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import styles from './about.module.css';
 
-const values = [
+const beliefs = [
   {
-    icon: (
-      <svg width="24" height="24" fill="none" stroke="#af431d" strokeWidth="1.5" viewBox="0 0 24 24">
-        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
-        <circle cx="12" cy="12" r="3" />
-      </svg>
-    ),
-    title: 'Independent Perspective',
-    desc: 'We look at your business without platform bias. Aggregators want you to spend on ad slots; third-party tools push their own lock-in. Our sole objective is your commercial profitability.',
+    tone: 'ember',
+    title: 'We work for you, not the platforms',
+    text: 'We take no commission, no referral fee and no software kickback. If a platform is selling you something you do not need, we will say so in writing.',
   },
   {
-    icon: (
-      <svg width="24" height="24" fill="none" stroke="#af431d" strokeWidth="1.5" viewBox="0 0 24 24">
-        <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" /><circle cx="9" cy="7" r="4" />
-        <path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75" />
-      </svg>
-    ),
-    title: 'Commercial Focus',
-    desc: 'Every recommendation connects to revenue, efficiency or profitability. We don\'t generate reports for the sake of it. Every insight must prove its financial justification.',
+    tone: 'saffron',
+    title: 'Every answer comes with a number',
+    text: 'If we cannot tell you roughly what a change is worth in rupees, it does not go in the report. Ideas are cheap. Sized ideas are useful.',
   },
   {
-    icon: (
-      <svg width="24" height="24" fill="none" stroke="#af431d" strokeWidth="1.5" viewBox="0 0 24 24">
-        <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
-      </svg>
-    ),
-    title: 'Actionable Intelligence',
-    desc: 'No vanity dashboards. Every insight should lead to a decision. We translate complex data streams into specific commercial actions your team can execute immediately.',
+    tone: 'sky',
+    title: 'Short beats thorough',
+    text: 'Nobody in a kitchen reads 40 pages. You get a page. The working underneath is always there if you want it, but you should not need it.',
   },
   {
-    icon: (
-      <svg width="24" height="24" fill="none" stroke="#af431d" strokeWidth="1.5" viewBox="0 0 24 24">
-        <circle cx="12" cy="12" r="9" stroke="#af431d" strokeWidth="1.5" strokeDasharray="3 3" />
-        <path d="M7 13C7 15.7614 9.23858 18 12 18C14.7614 18 17 15.7614 17 13H7Z" stroke="#af431d" strokeWidth="1.5" />
-        <path d="M12 6V10M9 8V10M15 8V10" stroke="#af431d" strokeWidth="1.5" strokeLinecap="round" />
-      </svg>
-    ),
-    title: 'Built for the Modern Restaurant Business',
-    desc: 'Your menu, pricing, promotions, visibility, customer behaviour and profitability are connected. SecondMiles brings those signals together to identify where growth is being won — and where it is being lost.',
+    tone: 'basil',
+    title: 'We have done the job',
+    text: 'Our team has written menus, set prices and run sites. We know what a kitchen can actually deliver on a Saturday night, and we plan around it.',
+  },
+  {
+    tone: 'plum',
+    title: 'Boring wins',
+    text: 'Most growth comes from a dozen small, unglamorous fixes done properly — not one big idea. We are happy being the people who do the dozen.',
+  },
+  {
+    tone: 'ink',
+    title: 'We tell you when to stop',
+    text: 'If there is nothing left worth finding, we will say that too. Long contracts that do nothing are not a business we want.',
   },
 ];
 
 const team = [
   {
+    initials: 'DD',
     name: 'Deepak Singh Dagur',
     role: 'Founder',
-    bio: '15+ years in food & hospitality. Former Head of Strategy at Deliveroo. Built analytics and growth functions across top food-tech and multi-site operators.',
-    initials: 'DD',
+    bio: '15 years in food and hospitality, including strategy work at Deliveroo. Has built the analytics and growth side of food-tech businesses and multi-site operators.',
+    tone: 'ember',
   },
   {
-    name: 'Rishi Sharma',
-    role: 'Co-Founder',
-    bio: '18+ years of commercial and operational leadership in food & hospitality. Expert in menu profitability, platform economics, and brand growth.',
     initials: 'RS',
-  }
+    name: 'Rishi Sharma',
+    role: 'Co-founder',
+    bio: '18 years running the commercial side of restaurants. Knows menu profit, platform economics and what it takes to grow a brand without breaking the kitchen.',
+    tone: 'basil',
+  },
 ];
 
-const coreMetrics = ['Revenue', 'Orders', 'AOV', 'Conversion', 'Visibility', 'Profitability'];
+const numbers = [
+  { k: 'Revenue', v: 'what comes in' },
+  { k: 'Orders', v: 'how many' },
+  { k: 'Basket', v: 'how big' },
+  { k: 'Conversion', v: 'who says yes' },
+  { k: 'Visibility', v: 'who sees you' },
+  { k: 'Profit', v: 'what you keep' },
+];
 
 export default function AboutPage() {
   return (
-    <div style={{ paddingTop: '72px', background: '#FFFFFF' }}>
-      {/* Hero */}
-      <section className={`page-hero ${styles.hero}`}>
+    <>
+      <section className="page-head">
         <div className="container">
-          <div className="tag" style={{ marginBottom: '20px' }}>Growth Intelligence Partner</div>
-          <h1>Move beyond the obvious.<br /><span className="green">Find the overlooked growth.</span></h1>
-          <p>SecondMiles is the growth intelligence partner for modern food businesses — helping them turn online-ordering data into sharper decisions, stronger performance and sustainable growth.</p>
+          <span className="kicker">About us</span>
+          <h1 className="h-xl">
+            The first answer<br />
+            is rarely the <span className="mark">good one.</span>
+          </h1>
+          <p className="lead">
+            Anyone can tell you sales were down. We are the people who go and
+            find out why, and what it is worth fixing. That extra bit of
+            distance is where the name comes from.
+          </p>
         </div>
       </section>
 
-      {/* Mission */}
-      <section className="section" style={{ background: '#FFFFFF' }}>
+      {/* story */}
+      <section className="section band-cream band-dots">
         <div className="container">
-          <div className={styles.missionGrid}>
-            <div className={styles.missionLeft}>
-              <div className="section-label">Our Philosophy</div>
-              <h2 className="section-title">The first answer isn't <span>always the best answer.</span></h2>
-              <p className="section-desc" style={{ marginBottom: '20px' }}>
-                We go one step further — connecting performance, customer behaviour and commercial decisions to uncover opportunities others miss.
+          <div className={styles.story}>
+            <div className={styles.storyCopy}>
+              <span className="kicker">Why we started</span>
+              <h2 className="h-lg">
+                Everyone had reports.<br />
+                <span className="swish">Nobody had answers.</span>
+              </h2>
+              <p>
+                We spent years inside restaurants and delivery platforms,
+                watching good operators drown in dashboards. Four apps, five
+                exports, and still no straight answer to the only question that
+                matters: what should I change this week?
               </p>
-              <p className="section-desc" style={{ marginBottom: '24px' }}>
-                Most restaurant operators are inundated with dashboards and platform reports that state what happened yesterday, but fail to provide the commercial conviction needed to act on tomorrow.
+              <p>
+                So we built the thing we always wanted. Someone independent who
+                reads all the numbers, works out what they mean for your
+                profit, and writes it down in a way a busy manager can act on
+                before service.
               </p>
-              <div style={{ borderTop: '1px solid rgba(175,67,29,0.15)', paddingTop: '24px', marginTop: '12px' }}>
-                <div style={{ fontSize: '0.82rem', textTransform: 'uppercase', letterSpacing: '0.08em', color: '#af431d', fontWeight: 700, marginBottom: '14px' }}>
-                  Built around the metrics that actually matter
-                </div>
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px' }}>
-                  {coreMetrics.map(m => (
-                    <span key={m} style={{
-                      background: 'rgba(175,67,29,0.06)',
-                      border: '1px solid rgba(175,67,29,0.2)',
-                      padding: '6px 14px',
-                      borderRadius: '100px',
-                      fontSize: '0.82rem',
-                      color: '#1C1917',
-                      fontWeight: 600
-                    }}>
-                      {m}
-                    </span>
-                  ))}
-                </div>
+              <p>
+                No platform pays us. No software company pays us. You do — and
+                only for as long as we are finding you more than we cost.
+              </p>
+
+              <div className={styles.quote}>
+                <span className={styles.quoteMark}>&ldquo;</span>
+                <p>We don&apos;t just report on performance. We argue with it.</p>
+                <span className={styles.quoteBy}>— How we start every project</span>
               </div>
             </div>
 
-            <div className={styles.missionRight}>
-              <div className={styles.missionVisual}>
-                <div className={styles.missionBg} />
-                <div className={styles.missionCard}>
-                  <div className={styles.missionQuote}>
-                    "We don't just report performance. We challenge it."
-                  </div>
-                  <div className={styles.missionAuthor}>
-                    — SecondMiles Founding Principle
-                  </div>
-                </div>
+            <aside className={styles.storySide}>
+              <div className={styles.photo}>
+                <Image
+                  src="/hero-road.jpg"
+                  alt="A long open road at dusk"
+                  width={620}
+                  height={700}
+                  className={styles.photoImg}
+                />
               </div>
-            </div>
+              <div className={styles.photoNote}>
+                <strong>Second miles</strong>
+                <span>
+                  The first mile is the report everybody already has. The second
+                  is the bit where it turns into money.
+                </span>
+              </div>
+            </aside>
           </div>
         </div>
       </section>
 
-      {/* Values */}
-      <section className={`section ${styles.valuesSection}`}>
+      {/* the six numbers */}
+      <section className="section-tight band-saffron">
         <div className="container">
-          <div style={{ textAlign: 'center', marginBottom: '60px' }}>
-            <div className="section-label">Core Principles</div>
-            <h2 className="section-title">How we bring <span>growth to light</span></h2>
-          </div>
-          <div className="grid-2">
-            {values.map((v, i) => (
-              <div key={i} className="card" style={{ display: 'flex', gap: '20px', alignItems: 'flex-start' }}>
-                <div className="icon-wrap" style={{ flexShrink: 0 }}>{v.icon}</div>
-                <div>
-                  <h3 style={{ fontSize: '1.1rem', fontWeight: '700', marginBottom: '10px', color: '#1C1917' }}>{v.title}</h3>
-                  <p style={{ fontSize: '0.92rem', color: '#57534E', lineHeight: '1.65' }}>{v.desc}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Team */}
-      <section className="section" style={{ background: '#FFFFFF' }}>
-        <div className="container">
-          <div style={{ textAlign: 'center', marginBottom: '60px' }}>
-            <div className="section-label">Leadership</div>
-            <h2 className="section-title">Operators who know <span>food business economics</span></h2>
-          </div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '32px', maxWidth: '800px', margin: '0 auto' }}>
-            {team.map((m, i) => (
-              <div key={i} className={`card ${styles.teamCard}`}>
-                <div className={styles.teamAvatar}>{m.initials}</div>
-                <h3 className={styles.teamName}>{m.name}</h3>
-                <div className={styles.teamRole}>{m.role}</div>
-                <p className={styles.teamBio}>{m.bio}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section style={{ padding: '0 0 100px', background: '#FFFFFF' }}>
-        <div className="container">
-          <div className={styles.ctaBox} style={{ textAlign: 'center' }}>
-            <div className="section-label" style={{ marginBottom: '12px' }}>Start Your Second Mile</div>
-            <h2 className="section-title" style={{ textAlign: 'center', marginBottom: '16px' }}>
-              Let's find your <span>second mile.</span>
+          <div className={styles.numbersWrap}>
+            <h2 className="h-md" style={{ maxWidth: '16ch' }}>
+              Six numbers run a food business.
             </h2>
-            <p style={{ color: '#1C1917', fontSize: '1.15rem', fontWeight: 600, marginBottom: '8px' }}>
-              30 minutes. Your business. No sales pitch.
-            </p>
-            <p style={{ color: '#57534E', maxWidth: '500px', margin: '0 auto 32px', fontSize: '0.95rem', lineHeight: '1.6' }}>
-              Let's look at your ordering data and uncover the hidden commercial opportunities you're leaving behind.
-            </p>
-            <div style={{ display: 'flex', justifyContent: 'center' }}>
-              <Link href="/contact" className="btn-primary">Find My Growth Opportunities →</Link>
+            <div className={styles.numbers}>
+              {numbers.map((n) => (
+                <div key={n.k} className={styles.numberCard}>
+                  <strong>{n.k}</strong>
+                  <span>{n.v}</span>
+                </div>
+              ))}
             </div>
           </div>
         </div>
       </section>
-    </div>
+
+      {/* beliefs */}
+      <section className="section band-paper">
+        <div className="container">
+          <div className="center-col" style={{ marginBottom: 46 }}>
+            <span className="kicker">What we believe</span>
+            <h2 className="h-lg">Six rules we don&apos;t break</h2>
+          </div>
+
+          <div className={styles.beliefGrid}>
+            {beliefs.map((b) => (
+              <div key={b.title} className={`${styles.belief} ${styles[b.tone]} pop-hover`}>
+                <span className={styles.beliefBar} />
+                <h3>{b.title}</h3>
+                <p>{b.text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* team */}
+      <section className="section band-peach">
+        <div className="container">
+          <div className="center-col" style={{ marginBottom: 44 }}>
+            <span className="kicker">Who you deal with</span>
+            <h2 className="h-lg">
+              Two people who have <span className="mark mark-basil mark-light">run kitchens</span>
+            </h2>
+            <p className="lead" style={{ marginTop: 16 }}>
+              You get the founders on the call. Not a junior with a template.
+            </p>
+          </div>
+
+          <div className={styles.teamGrid}>
+            {team.map((m) => (
+              <article key={m.name} className={`${styles.member} ${styles[m.tone]}`}>
+                <div className={styles.avatar}>{m.initials}</div>
+                <h3>{m.name}</h3>
+                <div className={styles.role}>{m.role}</div>
+                <div className="perf" />
+                <p>{m.bio}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* cta */}
+      <section className="section-tight band-ink">
+        <div className="container">
+          <div className={styles.cta}>
+            <div>
+              <h2 className="h-md">Come and test us on your own numbers.</h2>
+              <p className="lead on-dark" style={{ marginTop: 12 }}>
+                Thirty minutes, free, and you keep whatever we find.
+              </p>
+            </div>
+            <Link href="/contact" className="btn btn-saffron">
+              Book a free check
+              <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </Link>
+          </div>
+        </div>
+      </section>
+    </>
   );
 }

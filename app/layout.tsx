@@ -1,25 +1,48 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import { Bricolage_Grotesque, DM_Sans, Space_Mono } from 'next/font/google';
 import './globals.css';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 
-const inter = Inter({
+const bricolage = Bricolage_Grotesque({
   subsets: ['latin'],
-  weight: ['300', '400', '500', '600', '700', '800', '900'],
-  variable: '--font-inter',
+  variable: '--font-bricolage',
+  display: 'swap',
+});
+
+const dmSans = DM_Sans({
+  subsets: ['latin'],
+  variable: '--font-dm',
+  display: 'swap',
+});
+
+const spaceMono = Space_Mono({
+  subsets: ['latin'],
+  weight: ['400', '700'],
+  variable: '--font-mono',
   display: 'swap',
 });
 
 export const metadata: Metadata = {
-  title: 'SecondMiles — Growth Intelligence for Food Businesses',
-  description: 'SecondMiles is the growth intelligence partner for modern food businesses — helping them find and act on the opportunities hidden in their online performance.',
-  keywords: ['growth intelligence', 'food business', 'restaurant analytics', 'menu optimisation', 'pricing intelligence', 'delivery margins', 'conversion rate'],
+  title: 'SecondMiles Find the money hiding in your menu',
+  description:
+    'SecondMiles turns your delivery and ordering data into simple decisions: what to sell, what to charge, what to fix. Clear answers for restaurants, every week.',
+  keywords: [
+    'restaurant growth',
+    'menu engineering',
+    'delivery margins',
+    'pricing for restaurants',
+    'food business analytics',
+    'Deliveroo Uber Eats Just Eat performance',
+  ],
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={inter.variable}>
+    <html
+      lang="en"
+      className={`${bricolage.variable} ${dmSans.variable} ${spaceMono.variable}`}
+    >
       <body suppressHydrationWarning>
         <Navbar />
         <main>{children}</main>

@@ -1,117 +1,219 @@
 import Link from 'next/link';
 import styles from './resources.module.css';
 
-const insights = [
+const articles = [
   {
-    tag: 'Menu Intelligence',
-    title: 'Why 60% of delivery menus are too long — and how to fix yours',
-    excerpt: 'Analysis across multi-platform restaurant data reveals a clear relationship between menu size and checkout conversion. Here is why choice overload depresses basket sizes.',
-    date: 'Growth Insight',
-    readTime: '5 min read',
-    id: 'insights',
+    tone: 'ember',
+    topic: 'Menu',
+    title: 'Your delivery menu is too long. Here is how to prove it.',
+    blurb:
+      'Across the kitchens we look at, longer menus almost always convert worse. Too much choice makes people close the app. A simple way to work out what to cut.',
+    read: '5 min',
   },
   {
-    tag: 'Pricing & Margin',
-    title: 'The hidden cost of delivery discounts: an order-level margin audit',
-    excerpt: 'Promotional discounting on aggregators drives gross GMV on the surface, but frequently erodes net contribution. Here is how to measure true discount incrementality.',
-    date: 'Pricing Intelligence',
-    readTime: '6 min read',
+    tone: 'saffron',
+    topic: 'Pricing',
+    title: 'What a 20% discount really costs you',
+    blurb:
+      'Discounts look free because the platform shows you the extra orders. They never show you the orders you would have got anyway. The arithmetic, with real numbers.',
+    read: '6 min',
   },
   {
-    tag: 'Channel Economics',
-    title: 'Direct ordering vs. platform delivery: finding your commercial balance',
-    excerpt: 'Aggregators provide top-of-funnel discovery, while direct channels preserve margins. We model how top food brands calibrate their channel mix.',
-    date: 'Strategy Brief',
-    readTime: '7 min read',
+    tone: 'sky',
+    topic: 'Channels',
+    title: 'Platform or direct? The honest answer is both.',
+    blurb:
+      'Apps bring you people who have never heard of you. Direct keeps the money. Where to draw the line, and how to move regulars across without losing them.',
+    read: '7 min',
+  },
+  {
+    tone: 'basil',
+    topic: 'Profit',
+    title: 'Why your busiest night might be your worst one',
+    blurb:
+      'Take out commission, packaging, the promo and the two refunds, and a packed Friday can earn less than a quiet Tuesday. How to check yours.',
+    read: '5 min',
+  },
+  {
+    tone: 'plum',
+    topic: 'Conversion',
+    title: 'Six photos that are costing you orders',
+    blurb:
+      'People buy the picture, not the dish. The most common photo mistakes on delivery apps, and what to shoot instead — no studio needed.',
+    read: '4 min',
+  },
+  {
+    tone: 'ink',
+    topic: 'Operations',
+    title: 'The Monday list: how to act on your numbers in 20 minutes',
+    blurb:
+      'A simple weekly routine any manager can run without software. What to look at, in what order, and what to safely ignore.',
+    read: '6 min',
   },
 ];
 
-const caseStudies = [
+const cases = [
   {
-    client: 'Multi-Unit Casual Dining Brand',
-    result: '+23% Average Order Value',
-    desc: 'Menu restructuring and bundle redesign across 35 sites, unlocking higher contribution without increasing kitchen assembly friction.',
-    id: 'cases',
+    tone: 'ember',
+    figure: '+23%',
+    metric: 'bigger average order',
+    who: 'Casual dining group · 35 sites',
+    problem:
+      'A 140-item delivery menu that had never been cut. Baskets were small and the kitchen was slow at peak.',
+    did: 'Ranked every dish by real profit, cut 40 of them, and built six combos out of prep that was already happening.',
+    out: 'Baskets up almost a quarter. Ticket times down. Nobody had to learn a new dish.',
   },
   {
-    client: 'Regional Fast-Casual Concept',
-    result: '-18% Net Commission Drag',
-    desc: 'Platform promotion rationalization and direct order migration that preserved customer volume while reclaiming net cash margin.',
+    tone: 'basil',
+    figure: '−18%',
+    metric: 'less lost to commission',
+    who: 'Regional fast-casual brand',
+    problem:
+      'Heavy promo spend on two platforms, with no way of knowing whether it was buying anything.',
+    did: 'Tested which promos brought genuinely new orders, dropped the rest, and gave regulars a reason to order direct.',
+    out: 'Same order count, noticeably more money kept per order.',
   },
   {
-    client: 'Independent Pizza & Burger Group',
-    result: '+31% View-to-Order Conversion',
-    desc: 'Overhauled visual merchandising, item description appeal, and modifier sequencing to eliminate dinner peak drop-offs.',
+    tone: 'sky',
+    figure: '+31%',
+    metric: 'more views turning into orders',
+    who: 'Independent pizza & burger group',
+    problem:
+      'Plenty of people looking at the page between 7 and 9pm. Far too few of them ordering.',
+    did: 'New photos for the top 20 items, rewritten descriptions, and a much simpler add-ons screen.',
+    out: 'The evening drop-off went away. Same traffic, a third more orders.',
   },
 ];
 
 export default function ResourcesPage() {
   return (
-    <div style={{paddingTop:'72px', background: '#FFFFFF'}}>
-      {/* Hero */}
-      <section className="page-hero" style={{background:'radial-gradient(ellipse at 50% 0%, rgba(175,67,29,0.08) 0%, transparent 60%)'}}>
+    <>
+      <section className="page-head">
         <div className="container">
-          <div className="tag" style={{marginBottom:'20px'}}>Growth Intelligence Hub</div>
-          <h1>Insights on restaurant<br /><span className="green">growth & performance.</span></h1>
-          <p>Practical, data-backed perspectives on menu engineering, pricing elasticity, and platform economics from SecondMiles.</p>
+          <span className="kicker">Reading & results</span>
+          <h1 className="h-xl">
+            Useful things,<br />
+            <span className="mark">plainly put.</span>
+          </h1>
+          <p className="lead">
+            Short pieces on menus, prices and platform economics — the same
+            thinking we use on client work. Plus what actually changed for
+            three kitchens.
+          </p>
         </div>
       </section>
 
-      {/* Curated Insights */}
-      <section className="section" id="insights" style={{background: '#FFFFFF'}}>
+      {/* articles */}
+      <section className="section band-cream band-dots" id="insights">
         <div className="container">
-          <div className="section-label" style={{marginBottom:'12px'}}>Featured Analysis</div>
-          <h2 className="section-title" style={{marginBottom:'48px'}}>Growth <span>intelligence</span></h2>
-          <div className="grid-3">
-            {insights.map((a, i) => (
-              <article key={i} className={`card ${styles.articleCard}`}>
-                <div className={styles.articleTag}>{a.tag}</div>
-                <h3 className={styles.articleTitle}>{a.title}</h3>
-                <p className={styles.articleExcerpt}>{a.excerpt}</p>
-                <div className={styles.articleMeta}>
-                  <span>{a.date}</span>
-                  <span className={styles.dot}>·</span>
-                  <span>{a.readTime}</span>
+          <div className={styles.head}>
+            <div>
+              <span className="kicker">The reading room</span>
+              <h2 className="h-lg">Worth ten minutes</h2>
+            </div>
+            <p className="lead">
+              No gated PDFs, no &ldquo;book a demo to continue&rdquo;. Read it,
+              use it, argue with it.
+            </p>
+          </div>
+
+          <div className={styles.grid}>
+            {articles.map((a) => (
+              <article key={a.title} className={`${styles.article} ${styles[a.tone]} pop-hover`}>
+                <div className={styles.articleTop}>
+                  <span className={styles.topic}>{a.topic}</span>
+                  <span className={styles.read}>{a.read}</span>
                 </div>
-                <Link href="/contact" className={styles.readMore}>Discuss This Topic →</Link>
+                <h3>{a.title}</h3>
+                <p>{a.blurb}</p>
+                <Link href="/contact" className={styles.articleLink}>
+                  Ask us about this <Arrow />
+                </Link>
+              </article>
+            ))}
+          </div>
+
+          <p className={styles.note}>
+            Writing in progress — want one of these early? <Link href="/contact">Drop us a line.</Link>
+          </p>
+        </div>
+      </section>
+
+      {/* cases */}
+      <section className="section band-paper" id="cases">
+        <div className="container">
+          <div className="center-col" style={{ marginBottom: 46 }}>
+            <span className="kicker">Real results</span>
+            <h2 className="h-lg">
+              Three kitchens, <span className="mark mark-basil mark-light">three fixes</span>
+            </h2>
+            <p className="lead" style={{ marginTop: 16 }}>
+              Names withheld because the numbers are theirs. The work is
+              described exactly as it happened.
+            </p>
+          </div>
+
+          <div className={styles.cases}>
+            {cases.map((c) => (
+              <article key={c.figure} className={`${styles.case} ${styles[c.tone]}`}>
+                <div className={styles.caseFig}>
+                  <strong>{c.figure}</strong>
+                  <span>{c.metric}</span>
+                </div>
+
+                <div className={styles.caseBody}>
+                  <div className={styles.caseWho}>{c.who}</div>
+                  <dl>
+                    <div>
+                      <dt>The problem</dt>
+                      <dd>{c.problem}</dd>
+                    </div>
+                    <div>
+                      <dt>What we did</dt>
+                      <dd>{c.did}</dd>
+                    </div>
+                    <div>
+                      <dt>What happened</dt>
+                      <dd>{c.out}</dd>
+                    </div>
+                  </dl>
+                </div>
               </article>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Case Studies */}
-      <section className={`section ${styles.caseSection}`} id="cases">
+      <section className="section-tight band-ink">
         <div className="container">
-          <div className="section-label" style={{marginBottom:'12px'}}>Commercial Proof</div>
-          <h2 className="section-title" style={{marginBottom:'48px'}}>Measured on <span>business impact</span></h2>
-          <div className="grid-3">
-            {caseStudies.map((c, i) => (
-              <div key={i} className={`card ${styles.caseCard}`}>
-                <div className={styles.caseResult}>{c.result}</div>
-                <div className={styles.caseClient}>{c.client}</div>
-                <p className={styles.caseDesc}>{c.desc}</p>
-                <Link href="/contact" className={styles.caseLink}>Achieve Similar Growth →</Link>
-              </div>
-            ))}
+          <div className={styles.cta}>
+            <div>
+              <h2 className="h-md">Want your numbers in this list?</h2>
+              <p className="lead on-dark" style={{ marginTop: 12 }}>
+                Start with the free half hour. We will tell you straight away
+                whether there is anything here worth chasing.
+              </p>
+            </div>
+            <Link href="/contact" className="btn btn-saffron">
+              Book a free check <Arrow />
+            </Link>
           </div>
         </div>
       </section>
+    </>
+  );
+}
 
-      {/* CTA */}
-      <section style={{padding:'0 0 100px', background: '#FFFFFF'}}>
-        <div className="container">
-          <div style={{background:'rgba(175,67,29,0.04)', border:'1px solid rgba(175,67,29,0.22)', borderRadius:'24px', padding:'60px 40px', textAlign:'center', boxShadow:'0 10px 30px rgba(175,67,29,0.06)'}}>
-            <div className="section-label">Partner With SecondMiles</div>
-            <h2 className="section-title" style={{textAlign:'center', marginBottom:'16px'}}>Let's find your <span>second mile.</span></h2>
-            <p style={{color:'#1C1917', fontSize:'1.2rem', fontWeight:600, marginBottom:'8px'}}>30 minutes. Your business. No sales pitch.</p>
-            <p style={{color:'#57534E', maxWidth:'480px', margin:'0 auto 32px', lineHeight:'1.7'}}>
-              Discover the commercial opportunities hidden in your restaurant's online performance data.
-            </p>
-            <Link href="/contact" className="btn-primary">Find My Growth Opportunities →</Link>
-          </div>
-        </div>
-      </section>
-    </div>
+function Arrow() {
+  return (
+    <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+      <path
+        d="M3 8h10M9 4l4 4-4 4"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
   );
 }

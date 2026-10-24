@@ -1,286 +1,287 @@
 .header {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 1000;
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  padding: 16px 40px;
-  transition: all 0.3s ease;
-  border-bottom: 1px solid rgba(175, 67, 29, 0.1);
+  inset: 12px 12px auto;
+  z-index: 100;
+  transition: inset 0.25s ease;
 }
 
-.header.scrolled {
-  background: rgba(255, 255, 255, 0.98);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
-  border-bottom: 1px solid rgba(175, 67, 29, 0.15);
-  padding: 12px 40px;
-}
-
-.navContainer {
-  max-width: 1440px;
-  margin: 0 auto;
+.bar {
+  width: 100%;
+  max-width: 1340px;
+  margin-inline: auto;
   display: flex;
+  flex-wrap: nowrap;
   align-items: center;
-  justify-content: space-between;
+  gap: 14px;
+  padding: 9px 9px 9px 18px;
+  border-radius: 99px;
+  /* Transparent at the top of the page — the border stays, in transparent,
+     so nothing shifts when the solid state fades in. */
+  background: transparent;
+  border: 2px solid transparent;
+  box-shadow: none;
+  transition: background var(--ease), border-color var(--ease),
+    box-shadow var(--ease), backdrop-filter var(--ease);
 }
 
-/* ─── Logo ─── */
+/* Once scrolled, a frosted pill so links stay readable over any band */
+.scrolled .bar,
+.menuOpen .bar {
+  background: rgba(255, 247, 238, 0.88);
+  -webkit-backdrop-filter: blur(16px) saturate(1.4);
+  backdrop-filter: blur(16px) saturate(1.4);
+  border-color: var(--ink);
+  box-shadow: var(--pop-sm);
+}
+
+@supports not (backdrop-filter: blur(1px)) {
+  .scrolled .bar,
+  .menuOpen .bar { background: var(--cream); }
+}
+
+/* ---- logo ---- */
+
 .logo {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: 12px;
-  text-decoration: none;
-  cursor: pointer;
+  gap: 9px;
+  flex: 0 0 auto;
+  white-space: nowrap;
 }
 
-.logoIcon {
-  display: block;
+.logoMark {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  flex: 0 0 34px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: var(--ember);
+  color: var(--cream);
+  border: var(--line);
 }
 
 .logoText {
-  font-family: inherit;
-  font-size: 1.15rem;
+  font-family: var(--font-bricolage), sans-serif;
   font-weight: 800;
-  letter-spacing: 0.08em;
+  font-size: 1.14rem;
+  letter-spacing: -0.045em;
+  color: var(--ink);
+}
+.logoText em {
+  font-style: normal;
+  color: var(--ember);
+}
+
+/* ---- nav ---- */
+
+.nav {
+  flex: 1 1 auto;
+  min-width: 0;
   display: flex;
-  align-items: center;
-}
-
-.logoSecond {
-  color: #1C1917;
-}
-
-.logoMiles {
-  color: #af431d;
-  margin-left: 2px;
-}
-
-/* ─── Desktop Nav ─── */
-.desktopNav {
-  display: flex;
-  align-items: center;
+  justify-content: center;
 }
 
 .navList {
   display: flex;
+  flex-wrap: nowrap;
   align-items: center;
-  gap: 32px;
-  list-style: none;
-  margin: 0;
-  padding: 0;
+  gap: 2px;
 }
 
 .navItem {
   position: relative;
+  flex: 0 0 auto;
 }
 
 .navLink {
-  position: relative;
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 6px;
-  font-size: 0.92rem;
-  font-weight: 500;
-  color: #292524;
-  text-decoration: none;
-  padding: 8px 0;
-  transition: color 0.2s ease;
-}
-
-.navLink:hover {
-  color: #af431d;
-}
-
-.activeLink {
-  color: #af431d;
+  padding: 9px 13px;
+  border-radius: 99px;
+  font-size: 0.89rem;
   font-weight: 600;
+  line-height: 1.4;
+  white-space: nowrap;
+  color: var(--ink-2);
+  transition: background var(--ease), color var(--ease);
 }
+.navLink:hover { background: var(--cream-2); color: var(--ink); }
 
-.activeUnderline {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 2.5px;
-  background-color: #af431d;
-  border-radius: 2px;
+.active {
+  background: var(--ink);
+  color: var(--cream);
 }
+.active:hover { background: var(--ink); color: var(--cream); }
 
-.dropdownChevron {
-  opacity: 0.7;
-  transition: transform 0.2s ease;
-}
+.caret { opacity: 0.6; }
 
-.navItem:hover .dropdownChevron {
-  transform: rotate(180deg);
-}
+/* ---- dropdown ---- */
 
-/* ─── Dropdown ─── */
-.dropdownMenu {
+.menu {
   position: absolute;
   top: calc(100% + 12px);
   left: 50%;
   transform: translateX(-50%);
-  min-width: 240px;
-  background: #FFFFFF;
-  border: 1px solid rgba(175, 67, 29, 0.18);
-  border-radius: 12px;
-  padding: 10px;
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
+  width: 290px;
+  background: var(--paper);
+  border: var(--line);
+  border-radius: 18px;
+  box-shadow: var(--pop);
+  padding: 8px;
+  animation: drop 0.18s ease both;
 }
 
-.dropdownItem {
+@keyframes drop {
+  from { opacity: 0; transform: translate(-50%, -6px); }
+  to   { opacity: 1; transform: translate(-50%, 0); }
+}
+
+.menu::before {
+  content: "";
+  position: absolute;
+  top: -14px;
+  left: 0;
+  right: 0;
+  height: 14px;
+}
+
+.menuItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 11px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  transition: background var(--ease);
+}
+.menuItem:hover { background: var(--cream); }
+
+.menuItem strong {
+  display: block;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--ink);
+}
+.menuItem em {
+  display: block;
+  font-style: normal;
+  font-size: 0.78rem;
+  color: var(--ink-3);
+  margin-top: 1px;
+}
+
+.menuDot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-top: 6px;
+  flex: none;
+  border: 1.5px solid var(--ink);
+}
+.ember   { background: var(--ember); }
+.saffron { background: var(--saffron); }
+.sky     { background: var(--sky); }
+.basil   { background: var(--basil); }
+.plum    { background: var(--plum); }
+
+/* ---- right side ---- */
+
+.right {
   display: flex;
   align-items: center;
   gap: 10px;
-  padding: 10px 14px;
-  font-size: 0.85rem;
-  color: #44403C;
-  text-decoration: none;
-  border-radius: 6px;
-  transition: all 0.2s ease;
+  flex: 0 0 auto;
 }
 
-.dropdownItem:hover {
-  background: rgba(175, 67, 29, 0.08);
-  color: #af431d;
-}
+.cta { box-shadow: 3px 3px 0 var(--ink); }
 
-.dropdownItemDot {
-  width: 5px;
-  height: 5px;
+.burger {
+  display: none;
+  width: 42px;
+  height: 42px;
+  flex: 0 0 42px;
+  border: var(--line);
   border-radius: 50%;
-  background: #af431d;
-  opacity: 0.8;
-}
-
-/* ─── Right CTA Button ─── */
-.navRight {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-}
-
-.headerBtn {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: #af431d;
-  color: #FFFFFF;
-  font-size: 0.88rem;
-  font-weight: 700;
-  padding: 10px 22px;
-  border-radius: 8px;
-  text-decoration: none;
-  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 2px 10px rgba(175, 67, 29, 0.25);
-}
-
-.headerBtn:hover {
-  background: #923514;
-  transform: translateY(-1px);
-  box-shadow: 0 4px 18px rgba(175, 67, 29, 0.4);
-}
-
-/* ─── Mobile ─── */
-.hamburger {
-  display: none;
+  background: var(--paper);
   flex-direction: column;
-  gap: 5px;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  padding: 4px;
-}
-
-.bar {
-  width: 24px;
-  height: 2px;
-  background: #1C1917;
-  border-radius: 2px;
-  transition: all 0.25s ease;
-}
-
-.barOpen1 {
-  transform: translateY(7px) rotate(45deg);
-}
-
-.barOpen2 {
-  opacity: 0;
-}
-
-.barOpen3 {
-  transform: translateY(-7px) rotate(-45deg);
-}
-
-.mobileDrawer {
-  display: none;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  right: 0;
-  background: #FFFFFF;
-  border-bottom: 1px solid rgba(175, 67, 29, 0.15);
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08);
-  padding: 24px 32px 36px;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.mobileNavLink {
-  display: block;
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: #1C1917;
-  text-decoration: none;
-  padding: 8px 0;
-}
-
-.mobileDropdown {
-  padding-left: 16px;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  margin-top: 6px;
-}
-
-.mobileSubLink {
-  font-size: 0.9rem;
-  color: #57534E;
-  text-decoration: none;
-}
-
-.mobileHeaderBtn {
-  display: inline-flex;
   align-items: center;
   justify-content: center;
-  background: #af431d;
-  color: #FFFFFF;
-  font-size: 0.95rem;
-  font-weight: 700;
-  padding: 14px 20px;
-  border-radius: 8px;
-  text-decoration: none;
-  margin-top: 12px;
+  gap: 4px;
+}
+.burger span {
+  width: 17px;
+  height: 2px;
+  background: var(--ink);
+  border-radius: 2px;
+  transition: transform 0.22s ease, opacity 0.18s ease;
+}
+.b1 { transform: translateY(6px) rotate(45deg); }
+.b2 { opacity: 0; }
+.b3 { transform: translateY(-6px) rotate(-45deg); }
+
+/* ---- mobile drawer ---- */
+
+.drawer {
+  margin-top: 10px;
+  background: var(--paper);
+  border: var(--line);
+  border-radius: 22px;
+  box-shadow: var(--pop);
+  padding: 14px;
+  max-height: calc(100vh - 110px);
+  overflow-y: auto;
+  animation: drop 0.2s ease both;
 }
 
-@media (max-width: 980px) {
-  .header {
-    padding: 16px 24px;
-  }
-  .desktopNav, .headerBtn {
-    display: none;
-  }
-  .hamburger {
-    display: flex;
-  }
-  .mobileDrawer {
-    display: flex;
-  }
+.drawerBlock { border-bottom: 1.5px dashed rgba(23, 19, 16, 0.18); padding-block: 4px; }
+.drawerBlock:last-of-type { border-bottom: none; }
+
+.drawerLink {
+  display: block;
+  padding: 13px 8px;
+  font-family: var(--font-bricolage), sans-serif;
+  font-size: 1.22rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.drawerSubs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  padding: 0 8px 13px;
+}
+
+.drawerSub {
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: 99px;
+  background: var(--cream);
+  border: 1.5px solid var(--ink);
+}
+
+.drawerCta {
+  width: 100%;
+  margin-top: 14px;
+}
+
+/* Tighten the nav before it ever has room to squeeze */
+@media (max-width: 1300px) {
+  .bar { gap: 10px; }
+  .navLink { padding: 9px 11px; font-size: 0.85rem; }
+}
+
+@media (max-width: 1140px) {
+  .nav { display: none; }
+  .burger { display: flex; }
+}
+
+@media (max-width: 560px) {
+  .header { inset: 8px 8px auto; }
+  .bar { padding: 7px 7px 7px 14px; }
+  .cta { display: none; }
+  .logoText { font-size: 1.05rem; }
 }

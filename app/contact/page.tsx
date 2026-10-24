@@ -1,210 +1,304 @@
 'use client';
+
 import { useState } from 'react';
 import styles from './contact.module.css';
 
-const contactInfo = [
+const steps = [
+  ['Call', 'Thirty minutes, free. We look at your numbers together.'],
+  ['Quote', 'A flat price in writing within two working days.'],
+  ['Start', 'Work begins within a week or two of you saying yes.'],
+];
+
+const details = [
   {
-    icon: (
-      <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
-        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
-        <polyline points="22,6 12,13 2,6" />
-      </svg>
-    ),
-    label: 'Email Us',
+    label: 'Email',
     value: 'info@secondmiles.in',
-  },
-  {
+    href: 'mailto:info@secondmiles.in',
+    tone: 'ember',
     icon: (
-      <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
-        <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.01 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z" />
+      <svg width="18" height="18" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24">
+        <rect x="2" y="4" width="20" height="16" rx="2" />
+        <path d="M2 7l10 6 10-6" />
       </svg>
     ),
-    label: 'Call Us',
-    value: '+917694096021',
   },
   {
+    label: 'Phone',
+    value: '+91 7694096021',
+    href: 'tel:+917694096021',
+    tone: 'basil',
     icon: (
-      <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
-        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" /><circle cx="12" cy="10" r="3" />
+      <svg width="18" height="18" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24">
+        <path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3.1 19.5 19.5 0 01-6-6A19.8 19.8 0 012.1 4.2 2 2 0 014.1 2h3a2 2 0 012 1.7c.1 1 .4 1.9.7 2.8a2 2 0 01-.5 2.1L8.1 9.9a16 16 0 006 6l1.3-1.3a2 2 0 012.1-.4c.9.3 1.8.6 2.8.7a2 2 0 011.7 2z" />
       </svg>
     ),
-    label: 'Find Us',
-    value: 'G-37 Balaji Tower, near christain Eminent School, Indore, M.P.',
+  },
+  {
+    label: 'Office',
+    value: 'G-37 Balaji Tower, near Christian Eminent School, Indore, M.P.',
+    href: null,
+    tone: 'sky',
+    icon: (
+      <svg width="18" height="18" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24">
+        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
+        <circle cx="12" cy="10" r="3" />
+      </svg>
+    ),
   },
 ];
 
+const topics = [
+  'My menu — what should I sell more of?',
+  'My prices — am I charging the right amount?',
+  'My ad spend — is it working?',
+  'My profit — where is it going?',
+  'The weekly Pass — ongoing help',
+  'Not sure yet — just want a chat',
+];
+
 export default function ContactPage() {
-  const [form, setForm] = useState({ name: '', email: '', company: '', phone: '', message: '', service: '' });
+  const [form, setForm] = useState({
+    name: '',
+    email: '',
+    business: '',
+    phone: '',
+    sites: '',
+    topic: '',
+    message: '',
+  });
   const [sent, setSent] = useState(false);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    setForm(prev => ({ ...prev, [e.target.name]: e.target.value }));
-  };
+  const update = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+  ) => setForm((p) => ({ ...p, [e.target.name]: e.target.value }));
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const submit = (e: React.FormEvent) => {
     e.preventDefault();
     setSent(true);
   };
 
   return (
-    <div style={{ paddingTop: '72px' }}>
-      {/* Hero */}
-      <section className="page-hero" style={{ background: 'radial-gradient(ellipse at 50% 0%, rgba(175,67,29,0.08) 0%, transparent 60%)', paddingBottom: '60px' }}>
+    <>
+      <section className="page-head">
         <div className="container">
-          <div className="tag" style={{ marginBottom: '20px' }}>Get in Touch</div>
-          <h1>Let's start the<br /><span className="green">conversation.</span></h1>
-          <p>Tell us a bit about your business and what you're trying to achieve. We'll get back to you within one working day.</p>
+          <span className="kicker">Say hello</span>
+          <h1 className="h-xl">
+            Thirty minutes.<br />
+            Your numbers. <span className="mark">No pitch.</span>
+          </h1>
+          <p className="lead">
+            Tell us roughly what is bothering you. We will come back within one
+            working day with a time and a couple of questions — nothing else.
+          </p>
         </div>
       </section>
 
-      {/* Contact Grid */}
-      <section style={{ padding: '60px 0 100px' }}>
+      <section className="section band-cream band-dots">
         <div className="container">
-          <div className={styles.contactGrid}>
-            {/* Info */}
-            <div className={styles.infoCol}>
-              <div className={styles.infoSection}>
-                <h2 className={styles.infoTitle}>How we work together</h2>
-                <div className={styles.infoSteps}>
-                  {[
-                    { n: '1', t: 'Discovery Call', d: 'A free 30-minute call to understand your situation.' },
-                    { n: '2', t: 'Proposal', d: 'We send a tailored proposal within 48 hours.' },
-                    { n: '3', t: 'Kickoff', d: 'Project starts within 1–2 weeks of sign-off.' },
-                  ].map(step => (
-                    <div key={step.n} className={styles.infoStep}>
-                      <div className={styles.stepN}>{step.n}</div>
+          <div className={styles.grid}>
+            {/* ---- left column ---- */}
+            <aside className={styles.side}>
+              <div className={styles.block}>
+                <h2 className="h-md">How this goes</h2>
+                <ol className={styles.steps}>
+                  {steps.map(([t, d], i) => (
+                    <li key={t}>
+                      <span className={styles.stepNum}>{i + 1}</span>
                       <div>
-                        <div className={styles.stepT}>{step.t}</div>
-                        <div className={styles.stepD}>{step.d}</div>
+                        <strong>{t}</strong>
+                        <p>{d}</p>
                       </div>
-                    </div>
+                    </li>
                   ))}
-                </div>
+                </ol>
               </div>
 
-              <div className={styles.contactCards}>
-                {contactInfo.map((c, i) => (
-                  <div key={i} className={styles.contactCard}>
-                    <div className="icon-wrap" style={{ width: '44px', height: '44px' }}>{c.icon}</div>
-                    <div>
-                      <div className={styles.contactLabel}>{c.label}</div>
-                      <div className={styles.contactValue}>{c.value}</div>
+              <div className={styles.cards}>
+                {details.map((d) => {
+                  const inner = (
+                    <>
+                      <span className={`${styles.icon} ${styles[d.tone]}`}>{d.icon}</span>
+                      <span>
+                        <em>{d.label}</em>
+                        <strong>{d.value}</strong>
+                      </span>
+                    </>
+                  );
+                  return d.href ? (
+                    <a key={d.label} href={d.href} className={styles.card}>
+                      {inner}
+                    </a>
+                  ) : (
+                    <div key={d.label} className={styles.card}>
+                      {inner}
                     </div>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
-            </div>
 
-            {/* Form */}
-            <div className={styles.formCol}>
+              <div className={styles.promise}>
+                <strong>What we won&apos;t do</strong>
+                <ul>
+                  <li>Put you on a mailing list</li>
+                  <li>Pass your details to anyone</li>
+                  <li>Chase you for months afterwards</li>
+                </ul>
+              </div>
+            </aside>
+
+            {/* ---- form ---- */}
+            <div className={styles.formWrap}>
               {sent ? (
-                <div className={styles.successState}>
-                  <div className={styles.successIcon}>
-                    <svg width="40" height="40" fill="none" stroke="#af431d" strokeWidth="2" viewBox="0 0 24 24">
-                      <path d="M20 6L9 17l-5-5" />
+                <div className={styles.done}>
+                  <div className={styles.doneTick}>
+                    <svg width="34" height="34" fill="none" stroke="currentColor" strokeWidth="2.6" viewBox="0 0 24 24">
+                      <path d="M20 6L9 17l-5-5" strokeLinecap="round" strokeLinejoin="round" />
                     </svg>
                   </div>
-                  <h3>Message received!</h3>
-                  <p>We'll be in touch within one working day.</p>
+                  <h2 className="h-md">Got it — thank you.</h2>
+                  <p>
+                    We read every one of these ourselves. Expect a reply within
+                    one working day, from a real person.
+                  </p>
+                  <button className="btn" onClick={() => setSent(false)}>
+                    Send another
+                  </button>
                 </div>
               ) : (
-                <form onSubmit={handleSubmit} className={styles.form} id="contact-form">
-                  <div className="grid-2" style={{ gap: '16px' }}>
-                    <div className={styles.field}>
-                      <label htmlFor="contact-name" className={styles.label}>Your Name *</label>
+                <form onSubmit={submit} className={styles.form}>
+                  <div className={styles.formHead}>
+                    <span className={styles.formTag}>Free growth check</span>
+                    <h2 className="h-md">Tell us about your place</h2>
+                  </div>
+
+                  <div className={styles.two}>
+                    <Field label="Your name" required>
                       <input
-                        id="contact-name"
                         name="name"
-                        type="text"
                         required
-                        placeholder="Your Name"
-                        className={styles.input}
                         value={form.name}
-                        onChange={handleChange}
+                        onChange={update}
+                        placeholder="Alex Kaur"
+                        className={styles.input}
                       />
-                    </div>
-                    <div className={styles.field}>
-                      <label htmlFor="contact-email" className={styles.label}>Email Address *</label>
+                    </Field>
+                    <Field label="Email" required>
                       <input
-                        id="contact-email"
                         name="email"
                         type="email"
                         required
-                        placeholder="@gmail.com"
-                        className={styles.input}
                         value={form.email}
-                        onChange={handleChange}
-                      />
-                    </div>
-                  </div>
-                  <div className="grid-2" style={{ gap: '16px' }}>
-                    <div className={styles.field}>
-                      <label htmlFor="contact-company" className={styles.label}>Business Name</label>
-                      <input
-                        id="contact-company"
-                        name="company"
-                        type="text"
-                        placeholder="Company Name"
+                        onChange={update}
+                        placeholder="alex@yourplace.com"
                         className={styles.input}
-                        value={form.company}
-                        onChange={handleChange}
                       />
-                    </div>
-                    <div className={styles.field}>
-                      <label htmlFor="contact-phone" className={styles.label}>Phone Number</label>
+                    </Field>
+                  </div>
+
+                  <div className={styles.two}>
+                    <Field label="Business name">
                       <input
-                        id="contact-phone"
+                        name="business"
+                        value={form.business}
+                        onChange={update}
+                        placeholder="Your Place"
+                        className={styles.input}
+                      />
+                    </Field>
+                    <Field label="Phone">
+                      <input
                         name="phone"
                         type="tel"
-                        placeholder="+91 9999999999"
-                        className={styles.input}
                         value={form.phone}
-                        onChange={handleChange}
+                        onChange={update}
+                        placeholder="+91 99999 99999"
+                        className={styles.input}
                       />
+                    </Field>
+                  </div>
+
+                  <Field label="How many sites?">
+                    <div className={styles.chips}>
+                      {['1', '2–5', '6–20', '20+'].map((s) => (
+                        <label
+                          key={s}
+                          className={`${styles.chip} ${form.sites === s ? styles.chipOn : ''}`}
+                        >
+                          <input
+                            type="radio"
+                            name="sites"
+                            value={s}
+                            checked={form.sites === s}
+                            onChange={update}
+                          />
+                          {s}
+                        </label>
+                      ))}
                     </div>
-                  </div>
-                  <div className={styles.field}>
-                    <label htmlFor="contact-service" className={styles.label}>What can we help with?</label>
+                  </Field>
+
+                  <Field label="What is bothering you most?">
                     <select
-                      id="contact-service"
-                      name="service"
-                      className={styles.select}
-                      value={form.service}
-                      onChange={handleChange}
+                      name="topic"
+                      value={form.topic}
+                      onChange={update}
+                      className={styles.input}
                     >
-                      <option value="">Select a service...</option>
-                      <option>Menu & Range Optimisation</option>
-                      <option>Pricing Intelligence</option>
-                      <option>Channel Strategy</option>
-                      <option>Performance Dashboards</option>
-                      <option>Not sure yet — I need advice</option>
+                      <option value="">Pick one…</option>
+                      {topics.map((t) => (
+                        <option key={t}>{t}</option>
+                      ))}
                     </select>
-                  </div>
-                  <div className={styles.field}>
-                    <label htmlFor="contact-message" className={styles.label}>Tell us about your business *</label>
+                  </Field>
+
+                  <Field label="Anything else we should know?" required>
                     <textarea
-                      id="contact-message"
                       name="message"
-                      required
                       rows={5}
-                      placeholder="Tell us about your current challenges, goals, and what you're hoping to achieve with SecondMiles..."
-                      className={styles.textarea}
+                      required
                       value={form.message}
-                      onChange={handleChange}
+                      onChange={update}
+                      placeholder="A couple of lines is plenty. Which platforms you use, what changed recently, what you wish you knew."
+                      className={styles.input}
                     />
-                  </div>
-                  <button type="submit" className={`btn-primary ${styles.submitBtn}`}>
-                    Send Message
-                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                      <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                  </Field>
+
+                  <button type="submit" className={`btn btn-primary ${styles.submit}`}>
+                    Send it over
+                    <svg width="15" height="15" viewBox="0 0 16 16" fill="none">
+                      <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                     </svg>
                   </button>
+
+                  <p className={styles.fine}>
+                    We reply within one working day. Your details stay with us.
+                  </p>
                 </form>
               )}
             </div>
           </div>
         </div>
       </section>
-    </div>
+    </>
+  );
+}
+
+function Field({
+  label,
+  required,
+  children,
+}: {
+  label: string;
+  required?: boolean;
+  children: React.ReactNode;
+}) {
+  return (
+    <label className={styles.field}>
+      <span className={styles.label}>
+        {label}
+        {required && <i>*</i>}
+      </span>
+      {children}
+    </label>
   );
 }

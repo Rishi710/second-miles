@@ -1,93 +1,125 @@
 'use client';
+
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import styles from './Navbar.module.css';
 
-const navLinks = [
+type NavLink = {
+  label: string;
+  href: string;
+  dropdown?: { label: string; note: string; href: string; tone: string }[];
+};
+
+const navLinks: NavLink[] = [
   { label: 'Home', href: '/' },
-  { label: 'About Us', href: '/about' },
-  { label: 'What We Do', href: '/what-we-do' },
+  { label: 'About', href: '/about' },
+  { label: 'What We Fix', href: '/what-we-do' },
   {
-    label: 'Solutions',
+    label: 'How We Help',
     href: '/solutions',
-    hasDropdown: true,
     dropdown: [
-      { label: 'Menu & Range Optimization', href: '/solutions#menu' },
-      { label: 'Pricing Intelligence', href: '/solutions#pricing' },
-      { label: 'Visibility & Channel Strategy', href: '/solutions#channel' },
-      { label: 'Growth Intelligence & Daily Pulse', href: '/solutions#dashboards' },
+      { label: 'Menu rebuild', note: 'Sell more of what pays', href: '/solutions#menu', tone: 'ember' },
+      { label: 'Pricing check', note: 'Charge the right number', href: '/solutions#pricing', tone: 'saffron' },
+      { label: 'Ads & visibility', note: 'Stop paying for nothing', href: '/solutions#channel', tone: 'sky' },
+      { label: 'Weekly Pulse', note: 'Know what to do Monday', href: '/solutions#dashboards', tone: 'basil' },
     ],
   },
   {
-    label: 'Resources',
+    label: 'Insights',
     href: '/resources',
-    hasDropdown: true,
     dropdown: [
-      { label: 'Growth Insights', href: '/resources#insights' },
-      { label: 'Case Studies', href: '/resources#cases' },
+      { label: 'Reading room', note: 'Short, useful articles', href: '/resources#insights', tone: 'plum' },
+      { label: 'Real results', note: 'What changed for clients', href: '/resources#cases', tone: 'basil' },
     ],
   },
-  { label: 'Contact', href: '/contact' },
 ];
 
 export default function Navbar() {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  const [openMenu, setOpenMenu] = useState<string | null>(null);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
+    const onScroll = () => setScrolled(window.scrollY > 16);
+    const frame = requestAnimationFrame(onScroll);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => {
+      cancelAnimationFrame(frame);
+      window.removeEventListener('scroll', onScroll);
     };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  useEffect(() => {
+    document.body.style.overflow = mobileOpen ? 'hidden' : '';
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [mobileOpen]);
+
+  const closeAll = () => {
+    setMobileOpen(false);
+    setOpenMenu(null);
+  };
+
   return (
-    <header className={`${styles.header} ${scrolled ? styles.scrolled : ''}`}>
-      <div className={styles.navContainer}>
-        {/* Logo */}
-        <Link href="/" className={styles.logo}>
-          <svg className={styles.logoIcon} width="32" height="26" viewBox="0 0 32 26" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M4 4L14 13L4 22" stroke="#af431d" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round" />
-            <path d="M13 4L23 13L13 22" stroke="#af431d" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round" />
-          </svg>
+    <header
+      className={`${styles.header} ${scrolled ? styles.scrolled : ''} ${
+        mobileOpen ? styles.menuOpen : ''
+      }`}
+    >
+      <div className={styles.bar}>
+        <Link href="/" className={styles.logo} aria-label="SecondMiles home">
+          <span className={styles.logoMark} aria-hidden="true">
+            <svg width="22" height="18" viewBox="0 0 22 18" fill="none">
+              <path d="M2 2.5L8.5 9L2 15.5" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
+              <path d="M11.5 2.5L18 9L11.5 15.5" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </span>
           <span className={styles.logoText}>
-            <span className={styles.logoSecond}>SECOND</span>
-            <span className={styles.logoMiles}>MILES</span>
+            Second<em>Miles</em>
           </span>
         </Link>
 
-        {/* Center Nav Links */}
-        <nav className={styles.desktopNav}>
+        <nav className={styles.nav} aria-label="Main">
           <ul className={styles.navList}>
             {navLinks.map((link) => {
-              const isActive = pathname === link.href || (link.href !== '/' && pathname.startsWith(link.href));
+              const active =
+                link.href === '/' ? pathname === '/' : pathname.startsWith(link.href);
               return (
                 <li
                   key={link.label}
                   className={styles.navItem}
-                  onMouseEnter={() => link.hasDropdown && setActiveDropdown(link.label)}
-                  onMouseLeave={() => setActiveDropdown(null)}
+                  onMouseEnter={() => link.dropdown && setOpenMenu(link.label)}
+                  onMouseLeave={() => setOpenMenu(null)}
                 >
-                  <Link href={link.href} className={`${styles.navLink} ${isActive ? styles.activeLink : ''}`}>
-                    <span>{link.label}</span>
-                    {link.hasDropdown && (
-                      <svg className={styles.dropdownChevron} width="10" height="6" viewBox="0 0 10 6" fill="none">
-                        <path d="M1 1L5 5L9 1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                  <Link
+                    href={link.href}
+                    className={`${styles.navLink} ${active ? styles.active : ''}`}
+                  >
+                    {link.label}
+                    {link.dropdown && (
+                      <svg className={styles.caret} width="9" height="6" viewBox="0 0 9 6" fill="none" aria-hidden="true">
+                        <path d="M1 1L4.5 4.5L8 1" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
                       </svg>
                     )}
-                    {isActive && <div className={styles.activeUnderline} />}
                   </Link>
 
-                  {link.hasDropdown && activeDropdown === link.label && (
-                    <div className={styles.dropdownMenu}>
-                      {link.dropdown?.map((item) => (
-                        <Link key={item.label} href={item.href} className={styles.dropdownItem}>
-                          <span className={styles.dropdownItemDot} />
-                          {item.label}
+                  {link.dropdown && openMenu === link.label && (
+                    <div className={styles.menu}>
+                      {link.dropdown.map((item) => (
+                        <Link
+                          key={item.label}
+                          href={item.href}
+                          className={styles.menuItem}
+                          onClick={closeAll}
+                        >
+                          <span className={`${styles.menuDot} ${styles[item.tone]}`} />
+                          <span>
+                            <strong>{item.label}</strong>
+                            <em>{item.note}</em>
+                          </span>
                         </Link>
                       ))}
                     </div>
@@ -98,48 +130,39 @@ export default function Navbar() {
           </ul>
         </nav>
 
-        {/* Right CTA */}
-        <div className={styles.navRight}>
-          <Link href="/contact" className={styles.headerBtn}>
-            Find Opportunities
-            <svg width="15" height="15" viewBox="0 0 16 16" fill="none">
-              <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
+        <div className={styles.right}>
+          <Link href="/contact" className={`btn btn-primary btn-sm ${styles.cta}`}>
+            Book a free check
           </Link>
 
-          {/* Mobile hamburger */}
           <button
-            className={styles.hamburger}
-            onClick={() => setMobileOpen(!mobileOpen)}
-            aria-label="Toggle navigation"
+            className={styles.burger}
+            onClick={() => setMobileOpen((v) => !v)}
+            aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
+            aria-expanded={mobileOpen}
           >
-            <span className={`${styles.bar} ${mobileOpen ? styles.barOpen1 : ''}`} />
-            <span className={`${styles.bar} ${mobileOpen ? styles.barOpen2 : ''}`} />
-            <span className={`${styles.bar} ${mobileOpen ? styles.barOpen3 : ''}`} />
+            <span className={mobileOpen ? styles.b1 : ''} />
+            <span className={mobileOpen ? styles.b2 : ''} />
+            <span className={mobileOpen ? styles.b3 : ''} />
           </button>
         </div>
       </div>
 
-      {/* Mobile Drawer */}
       {mobileOpen && (
-        <div className={styles.mobileDrawer}>
+        <div className={styles.drawer}>
           {navLinks.map((link) => (
-            <div key={link.label} className={styles.mobileDrawerItem}>
-              <Link
-                href={link.href}
-                className={styles.mobileNavLink}
-                onClick={() => setMobileOpen(false)}
-              >
+            <div key={link.label} className={styles.drawerBlock}>
+              <Link href={link.href} className={styles.drawerLink} onClick={closeAll}>
                 {link.label}
               </Link>
               {link.dropdown && (
-                <div className={styles.mobileDropdown}>
+                <div className={styles.drawerSubs}>
                   {link.dropdown.map((sub) => (
                     <Link
                       key={sub.label}
                       href={sub.href}
-                      className={styles.mobileSubLink}
-                      onClick={() => setMobileOpen(false)}
+                      className={styles.drawerSub}
+                      onClick={closeAll}
                     >
                       {sub.label}
                     </Link>
@@ -150,10 +173,10 @@ export default function Navbar() {
           ))}
           <Link
             href="/contact"
-            className={styles.mobileHeaderBtn}
-            onClick={() => setMobileOpen(false)}
+            className={`btn btn-primary ${styles.drawerCta}`}
+            onClick={closeAll}
           >
-            Find My Growth Opportunities →
+            Book a free check
           </Link>
         </div>
       )}

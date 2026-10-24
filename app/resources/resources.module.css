@@ -1,100 +1,215 @@
-.articleCard {
+.head {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 30px;
+  align-items: end;
+  margin-bottom: 42px;
+}
+
+/* ---- article cards ---- */
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+
+.article {
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  background: #FFFFFF;
-  border: 1px solid rgba(175, 67, 29, 0.15);
-  box-shadow: var(--shadow-card);
+  border: var(--line);
+  border-radius: var(--r-lg);
+  padding: 26px;
+  background: var(--paper);
+  box-shadow: var(--pop-sm);
+  position: relative;
+  overflow: hidden;
 }
-
-.articleTag {
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: #af431d;
+.article::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 7px;
 }
+.article.ember::before   { background: var(--ember); }
+.article.saffron::before { background: var(--saffron); }
+.article.sky::before     { background: var(--sky); }
+.article.basil::before   { background: var(--basil); }
+.article.plum::before    { background: var(--plum); }
+.article.ink::before     { background: var(--ink); }
 
-.articleTitle {
-  font-size: 1.1rem;
-  font-weight: 700;
-  color: #1C1917;
-  line-height: 1.35;
-  flex: 1;
-}
-
-.articleExcerpt {
-  font-size: 0.88rem;
-  color: #57534E;
-  line-height: 1.65;
-}
-
-.articleMeta {
+.articleTop {
   display: flex;
   align-items: center;
-  gap: 8px;
-  font-size: 0.8rem;
-  color: #78716C;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 8px 0 15px;
+}
+
+.topic {
+  font-family: var(--font-mono), monospace;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  padding: 5px 11px;
+  border-radius: 99px;
+  border: 1.5px solid var(--ink);
+}
+.article.ember   .topic { background: var(--ember-soft); }
+.article.saffron .topic { background: var(--saffron-soft); }
+.article.sky     .topic { background: var(--sky-soft); }
+.article.basil   .topic { background: var(--basil-soft); }
+.article.plum    .topic { background: var(--plum-soft); }
+.article.ink     .topic { background: var(--cream-2); }
+
+.read {
+  font-family: var(--font-mono), monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.08em;
+  color: var(--ink-3);
+}
+
+.article h3 {
+  font-size: 1.16rem;
+  line-height: 1.22;
+  margin-bottom: 11px;
+}
+
+.article p {
+  font-size: 0.89rem;
+  line-height: 1.65;
+  color: var(--ink-2);
+  margin-bottom: 20px;
+}
+
+.articleLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   margin-top: auto;
+  font-size: 0.84rem;
+  font-weight: 700;
+  color: var(--ember);
+  transition: gap var(--ease);
+}
+.article:hover .articleLink { gap: 11px; }
+
+.note {
+  margin-top: 32px;
+  text-align: center;
+  font-size: 0.89rem;
+  color: var(--ink-3);
+}
+.note a {
+  color: var(--ember);
+  font-weight: 700;
+  border-bottom: 2px solid var(--saffron);
 }
 
-.dot {
-  opacity: 0.5;
+/* ---- case studies ---- */
+
+.cases { display: flex; flex-direction: column; gap: 22px; }
+
+.case {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  border: var(--line);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  box-shadow: var(--pop);
+  background: var(--paper);
 }
 
-.readMore {
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: #af431d;
-  transition: opacity 0.2s ease;
-}
-
-.readMore:hover {
-  opacity: 0.8;
-}
-
-.caseSection {
-  background: #FFFFFF;
-}
-
-.caseCard {
+.caseFig {
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  background: #FFFFFF;
-  border: 1px solid rgba(175, 67, 29, 0.15);
-  box-shadow: var(--shadow-card);
+  justify-content: center;
+  padding: 30px 26px;
+  border-right: var(--line);
 }
+.case.ember .caseFig { background: var(--ember-soft); }
+.case.basil .caseFig { background: var(--basil-soft); }
+.case.sky   .caseFig { background: var(--sky-soft); }
 
-.caseResult {
-  font-size: 2rem;
-  font-weight: 900;
-  color: #af431d;
+.caseFig strong {
+  font-family: var(--font-bricolage), sans-serif;
+  font-size: clamp(2.4rem, 4.5vw, 3.1rem);
+  font-weight: 800;
   line-height: 1;
+  letter-spacing: -0.05em;
 }
+.case.ember .caseFig strong { color: var(--ember); }
+.case.basil .caseFig strong { color: var(--basil); }
+.case.sky   .caseFig strong { color: var(--sky); }
 
-.caseClient {
-  font-size: 0.8rem;
+.caseFig span {
+  font-size: 0.92rem;
   font-weight: 700;
-  letter-spacing: 0.08em;
+  margin-top: 7px;
+  line-height: 1.35;
+}
+
+.caseBody { padding: 28px; }
+
+.caseWho {
+  font-family: var(--font-mono), monospace;
+  font-size: 0.64rem;
+  font-weight: 700;
+  letter-spacing: 0.13em;
   text-transform: uppercase;
-  color: #57534E;
+  color: var(--ink-3);
+  padding-bottom: 16px;
+  margin-bottom: 18px;
+  border-bottom: 2px dashed rgba(23, 19, 16, 0.22);
 }
 
-.caseDesc {
-  font-size: 0.9rem;
-  color: #57534E;
-  line-height: 1.65;
-  flex: 1;
+.caseBody dl {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
 }
 
-.caseLink {
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: #af431d;
-  transition: opacity 0.2s;
+.caseBody dt {
+  font-family: var(--font-mono), monospace;
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  margin-bottom: 7px;
+}
+.case.ember .caseBody dt { color: var(--ember); }
+.case.basil .caseBody dt { color: var(--basil); }
+.case.sky   .caseBody dt { color: var(--sky); }
+
+.caseBody dd {
+  font-size: 0.89rem;
+  line-height: 1.62;
+  color: var(--ink-2);
 }
 
-.caseLink:hover {
-  opacity: 0.8;
+/* ---- cta ---- */
+
+.cta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 26px;
+}
+.cta > div { max-width: 600px; }
+
+/* ---- responsive ---- */
+
+@media (max-width: 1024px) {
+  .head { grid-template-columns: 1fr; align-items: start; gap: 18px; }
+  .grid { grid-template-columns: repeat(2, 1fr); }
+  .case { grid-template-columns: 1fr; }
+  .caseFig { border-right: none; border-bottom: var(--line); }
+  .caseBody dl { grid-template-columns: 1fr; gap: 16px; }
+}
+
+@media (max-width: 620px) {
+  .grid { grid-template-columns: 1fr; }
+  .caseBody { padding: 22px; }
 }
